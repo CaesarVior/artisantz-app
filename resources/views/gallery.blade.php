@@ -1,18 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
+@extends('app')
+@section('content')
+    <section class="gallery-container">
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Artisantz</title>
-</head>
+        @for ($i = 1; $i <= 9; $i++)
+            <div class="card">
+                <img src="{{ asset('images/default-image.png') }}" alt="">
+            </div>
+        @endfor
 
-<body>
-    <x-navbar />
-    <x-card />
-    <x-card />
-    <x-card />
-
-</body>
-
-</html>
+    </section>
+@endsection

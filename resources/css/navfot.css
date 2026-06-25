@@ -992,9 +992,18 @@ footer {
   font-size: 14px;
 }
 
-/* ================= CONTACT ================= */
+/* ================= GALLERY ================= */
+.gallery-container {
+  width: 80%;
+  margin: 50px auto;
 
-.container-contact {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+
+  gap: 15px;
+}
+
+.contact-container {
   max-width: 1100px;
   background: #ffffff;
   margin: auto;

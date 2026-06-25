@@ -1,8 +1,9 @@
 @extends('app')
 @section('content')
-    <div class='container-contact'>
+    <div class='contact-container'>
         <!-- Content -->
         <div class="row mt-5">
+
 
             <!-- Left -->
             <div class="col-lg-5">
