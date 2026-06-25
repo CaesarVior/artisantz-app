@@ -8,11 +8,15 @@ Route::get('/', function () {
 });
 
 Route::get('/', function () {
-    return view('home');    
+    return view('home');
 });
 
 Route::get('/gallery', function () {
     return view('gallery');
+});
+
+Route::get('/contact', function () {
+    return view('contact');
 });
 
 Route::get('/about', function () {
@@ -29,4 +33,4 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-require __DIR__ . '/auth.php';
+require __DIR__.'/auth.php';
