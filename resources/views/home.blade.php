@@ -1,9 +1,5 @@
-
-
+@extends ('app')
 @section('content')
-
-    @vite(['resources/css/navfot.css'])
-
 
         <!-- Pattern background (kalau kamu pakai ini) -->
         <div class="artisantz-pattern"></div>

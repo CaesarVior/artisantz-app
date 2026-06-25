@@ -1,0 +1,758 @@
+html,
+body {
+  height: 100%;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+body {
+  background: #ffffff;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ================= NAVBAR ================= */
+.navbar {
+  width: 85%;
+  margin: 30px auto;
+  background: #ffffff;
+  border-radius: 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 18px 40px;
+  position: fixed;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 1000;
+}
+
+.navbar-logo {
+  font-size: 28px;
+  font-weight: 700;
+  color: #222;
+}
+
+.navbar-menu {
+  display: flex;
+  list-style: none;
+  gap: 40px;
+}
+
+.navbar-menu a {
+  text-decoration: none;
+  color: #222;
+  font-weight: 500;
+}
+
+.navbar-contact a {
+  text-decoration: none;
+  background: #000000;
+  color: #ffffff;
+  padding: 12px 28px;
+  border-radius: 999px;
+  font-weight: 600;
+}
+
+/* ================= HERO ================= */
+.hero {
+  position: relative;
+  overflow: hidden;
+  min-height: 600px;
+  background: #f5f5f5;
+
+  padding-top: 100px;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  text-align: center;
+  font-size: 21px;
+}
+
+.hero-h,
+.hero-p {
+  text-align: center;
+  font-size: 21px;
+}
+/* ================= BEST SELLER ================ */
+
+.best-seller {
+  position: absolute;
+  left: 50%;
+  bottom: -180px;
+  transform: translate(-50%, -50%);
+  z-index: 100;
+}
+
+.best-title {
+  font-size: 52px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.best-title span {
+  color: #f4b24f;
+}
+
+.podium-wrapper {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: 100px;
+  z-index: 2;
+}
+
+/* ranking */
+.rank {
+  position: relative;
+}
+
+.rank h3 {
+  font-size: 60px;
+  font-weight: 800;
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+/* gambar */
+.rank img {
+  display: block;
+  overflow: visible;
+  object-fit: cover;
+  background-color: #ffffff;
+  box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+/* nomor 1 */
+.rank-center {
+  z-index: 3;
+}
+
+.rank-center img {
+  width: 240px;
+  height: 320px;
+}
+
+/* nomor 2 */
+.rank-left {
+  transform: translateX(60px);
+  z-index: 2;
+}
+
+.rank-left img {
+  width: 230px;
+  height: 220px;
+}
+
+/* nomor 3 */
+.rank-right {
+  transform: translateX(-60px);
+  z-index: 2;
+}
+
+.rank-right img {
+  width: 230px;
+  height: 220px;
+}
+/* ================ ABOUT PAGE ================= */
+.about-section {
+  padding: 120px 0;
+}
+
+.about-container {
+  width: 85%;
+  max-width: 1200px;
+  margin: auto;
+}
+
+/* HEADER */
+
+.about-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 80px;
+  margin-bottom: 120px;
+}
+
+.about-text {
+  flex: 1;
+}
+
+.about-text h1 {
+  font-size: 56px;
+  margin-bottom: 40px;
+  font-weight: 600;
+}
+
+.about-text p {
+  font-size: 18px;
+  line-height: 1.8;
+  color: #555;
+  margin-bottom: 30px;
+}
+
+.about-image {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.about-image img {
+  width: 100%;
+  max-width: 420px;
+  height: 500px;
+  object-fit: cover;
+}
+
+/* INFO */
+
+.about-info {
+  margin-bottom: 120px;
+}
+
+.info-row {
+  display: flex;
+  gap: 80px;
+  padding: 35px 0;
+}
+
+.info-title {
+  width: 220px;
+  font-weight: 600;
+}
+
+.info-content {
+  flex: 1;
+  color: #555;
+  line-height: 1.8;
+}
+
+/* CONTACT */
+
+.contact-section {
+  border-top: 1px solid #ddd;
+  padding-top: 50px;
+
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+
+.contact-left h3 {
+  font-size: 32px;
+  font-weight: 500;
+}
+
+.contact-right h3 {
+  font-size: 24px;
+  margin-bottom: 15px;
+}
+
+.contact-right p {
+  color: #777;
+  cursor: pointer;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 900px) {
+  .about-header {
+    flex-direction: column;
+  }
+
+  .info-row {
+    flex-direction: column;
+    gap: 15px;
+  }
+
+  .contact-section {
+    flex-direction: column;
+    gap: 30px;
+  }
+}
+/* ================= CONTAINER ================= */
+.container {
+  position: relative;
+  overflow: visible;
+  width: 85%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ================= ARTISANTZ SECTION ================= */
+.artisantz-section {
+  padding: 80px 0;
+}
+
+/* TOP WRAPPER */
+.artisantz-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 50px;
+}
+
+/* HAPUS TRANSLATE BIAR NORMAL */
+.artisantz-left h2 {
+  font-size: 55px;
+  font-weight: 700;
+  padding: 50px;
+}
+
+.artisantz-right p {
+  font-size: 20px;
+  line-height: 1.8;
+  color: #444;
+  max-width: 600px;
+}
+
+/* ================= BOTTOM CARD ================= */
+.artisantz-bottom {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 80px 0;
+}
+
+.artisantz-bottom .card {
+  display: flex;
+  flex-direction: column;
+  transform: translateY(50%);
+
+  background: #f5f5f5;
+  position: relative;
+  padding: 25px;
+  border-radius: 15px;
+
+  min-height: 500px;
+  width: 100%;
+  max-width: 1500px;
+
+  z-index: 1;
+}
+
+/* ================= FOOTER ================= */
+footer {
+  width: 100%;
+  background: #000000;
+  padding: 60px;
+  margin-top: 200px;
+}
+
+.footer-container {
+  display: flex;
+  justify-content: center;
+  gap: 15%;
+}
+
+.footer-left {
+  width: 220px;
+}
+
+.footer-image {
+  width: 180px;
+  height: 180px;
+  background: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.footer-image img {
+  width: 120px;
+}
+
+.footer-social {
+  margin-top: 15px;
+  display: flex;
+  gap: 15px;
+}
+
+.footer-social a {
+  text-decoration: none;
+  color: white;
+  font-weight: 600;
+}
+
+.footer-brand h2 {
+  color: white;
+  font-size: 48px;
+  font-weight: 400;
+}
+
+.footer-links {
+  display: flex;
+  gap: 80px;
+}
+
+.footer-links div {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-links h4 {
+  color: white;
+  margin-bottom: 15px;
+  letter-spacing: 1px;
+}
+
+.footer-links a {
+  text-decoration: none;
+  color: #efefef;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.footer-bottom {
+  text-align: center;
+  color: white;
+  transform: translateY(27px);
+  margin-top: 20px;
+  font-size: 13px;
+}
+
+/* ================= ARTISANTZ BACKGROUND ================= */
+.artisantz-bg {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.artisantz-bg .row {
+  flex: 1;
+  overflow: hidden;
+  position: relative;
+}
+
+.artisantz-bg span {
+  display: inline-block;
+  font-size: 120px;
+  font-weight: 900;
+  white-space: nowrap;
+
+  user-select: none;
+  /* ini yang utama */  
+  color: transparent;
+  -webkit-text-stroke: 1px #d9d9d9;
+}
+
+.artisantz-bg .row:nth-child(1) span {
+  transform: translateX(0%);
+}
+
+.artisantz-bg .row:nth-child(2) span {
+  transform: translateX(-15%);
+}
+
+.artisantz-bg .row:nth-child(3) span {
+  transform: translateX(-30%);
+}
+
+.artisantz-bg .row:nth-child(4) span {
+  transform: translateX(-45%);
+}
+
+/* ================= RESPONSIVE ================= */
+@media (max-width: 768px) {
+  .artisantz-wrapper {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .footer-container {
+    flex-direction: column;
+    gap: 40px;
+  }
+}
+/* ================= TABLET ================= */
+@media (max-width: 1024px){
+
+  /* Navbar */
+  .navbar{
+    width:95%;
+    padding:15px 25px;
+  }
+
+  .navbar-menu{
+    gap:20px;
+  }
+
+  /* Hero */
+  .hero-content{
+    padding:0 20px;
+  }
+
+  .hero-h h1{
+    font-size:48px;
+  }
+
+  .hero-p p{
+    font-size:18px;
+  }
+
+  /* Best Seller */
+  .podium-wrapper{
+    gap:40px;
+  }
+
+  .rank-center img{
+    width:200px;
+    height:280px;
+  }
+
+  .rank-left img,
+  .rank-right img{
+    width:180px;
+    height:180px;
+  }
+
+  /* Artisantz */
+  .artisantz-left h2{
+    font-size:42px;
+    padding:0;
+  }
+
+  .artisantz-right p{
+    font-size:18px;
+  }
+
+  /* About */
+  .about-text h1{
+    font-size:46px;
+  }
+
+  .about-header{
+    gap:50px;
+  }
+}
+
+
+/* ================= MOBILE ================= */
+@media (max-width: 768px){
+
+  /* Navbar */
+  .navbar{
+    width:95%;
+    padding:15px 20px;
+  }
+
+  .navbar-logo{
+    font-size:22px;
+  }
+
+  .navbar-menu{
+    display:none;
+  }
+
+  .navbar-contact a{
+    padding:10px 18px;
+    font-size:14px;
+  }
+
+  /* Hero */
+  .hero{
+    min-height:500px;
+    padding:120px 20px 50px;
+  }
+
+  .hero-h h1{
+    font-size:36px;
+    line-height:1.3;
+  }
+
+  .hero-p p{
+    font-size:16px;
+    line-height:1.7;
+  }
+
+  /* Artisantz Section */
+  .artisantz-wrapper{
+    flex-direction:column;
+    text-align:center;
+  }
+
+  .artisantz-left h2{
+    font-size:38px;
+  }
+
+  .artisantz-right p{
+    font-size:16px;
+  }
+
+  /* Card */
+  .artisantz-bottom .card{
+    min-height:700px;
+  }
+
+  /* Best Seller */
+  .best-title{
+    font-size:36px;
+    margin-bottom:50px;
+  }
+
+  .best-seller{
+    width:100%;
+  }
+
+  .podium-wrapper{
+    gap:15px;
+  }
+
+  .rank h3{
+    font-size:40px;
+  }
+
+  .rank-left,
+  .rank-right{
+    transform:none;
+  }
+
+  .rank-center img{
+    width:140px;
+    height:200px;
+  }
+
+  .rank-left img,
+  .rank-right img{
+    width:120px;
+    height:140px;
+  }
+
+  /* About */
+  .about-section{
+    padding:120px 0 60px;
+  }
+
+  .about-header{
+    flex-direction:column;
+    text-align:center;
+    margin-bottom:80px;
+  }
+
+  .about-text h1{
+    font-size:38px;
+  }
+
+  .about-text p{
+    font-size:16px;
+  }
+
+  .about-image img{
+    max-width:100%;
+    height:300px;
+  }
+
+  .info-row{
+    flex-direction:column;
+    gap:10px;
+  }
+
+  .info-title{
+    width:100%;
+  }
+
+  .contact-section{
+    flex-direction:column;
+    gap:30px;
+  }
+
+  .contact-left h3{
+    font-size:24px;
+  }
+
+  .contact-right h3{
+    font-size:20px;
+  }
+
+  /* Footer */
+  .footer-container{
+    flex-direction:column;
+    gap:50px;
+  }
+
+  .footer-brand h2{
+    font-size:32px;
+  }
+
+  .footer-links{
+    flex-direction:column;
+    gap:30px;
+  }
+
+  footer{
+    padding:40px 20px;
+  }
+
+  /* Background Artisantz */
+  .artisantz-bg span{
+    font-size:60px;
+  }
+}
+
+
+/* ================= SMALL PHONE ================= */
+@media (max-width: 480px){
+
+  .hero-h h1{
+    font-size:28px;
+  }
+
+  .hero-p p{
+    font-size:14px;
+  }
+
+  .best-title{
+    font-size:28px;
+  }
+
+  .rank h3{
+    font-size:28px;
+  }
+
+  .rank-center img{
+    width:100px;
+    height:140px;
+  }
+
+  .rank-left img,
+  .rank-right img{
+    width:90px;
+    height:100px;
+  }
+
+  .about-text h1{
+    font-size:30px;
+  }
+
+  .artisantz-left h2{
+    font-size:30px;
+  }
+
+  .footer-brand h2{
+    font-size:26px;
+  }
+
+  .artisantz-bg span{
+    font-size:40px;
+  }
+}
