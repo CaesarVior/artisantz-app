@@ -1,9 +1,9 @@
 @extends('app')
 @section('content')
-    <div class="container">
-
+    <div class='contact-container'>
         <!-- Content -->
         <div class="row mt-5">
+
 
             <!-- Left -->
             <div class="col-lg-5">
@@ -78,6 +78,6 @@
                 </div>
 
             </div>
-
         </div>
-    @endsection
+    </div>
+@endsection

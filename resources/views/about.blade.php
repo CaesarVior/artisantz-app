@@ -1,7 +1,6 @@
 @extends('app')
 @section('content')
     <section class="about-section">
-
         <div class="about-container">
 
             <!-- Header -->
@@ -79,4 +78,4 @@
         </div>
 
     </section>
-@endsection
+    <<<<<<< HEAD @endsection=======@endsection>>>>>>> 5e4299400f98e08fe36d4a8f450de3fa8ad00229
