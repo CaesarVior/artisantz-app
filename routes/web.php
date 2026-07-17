@@ -28,5 +28,13 @@ Route::get('/login', function () {
     return view('login');
 });
 
+Route::get('/admin', function () {
+    return view('admin.index');
+});
+
+Route::get('/roles', function () {
+    return view('admin.roles');
+});
+
 
 require __DIR__.'/auth.php';
