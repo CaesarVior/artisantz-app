@@ -1,20 +1,13 @@
 <?php
-return [
-    'sidebar-superadmin' => 'Daftar Admin',
-    'sidebar-news' => 'Berita',
-    'sidebar-service' => 'Layanan',
-    'sidebar-testimonial' => 'Testimoni',
 
-    'sidebar-order' => 'Pesanan',
-    'sidebar-order-management' => 'Manajemen Pesanan',
-    'sidebar-order-summary' => 'Ringkasan Pesanan',
+return [
+    'sidebar-event' => 'Event Management',
+    'sidebar-user' => 'User Management',
+    'sidebar-role' => 'Role Management',
 
     'sidebar-form-submission' => 'Pengisian Form',
-    'sidebar-add-news' => 'Tambah Berita',
-    'sidebar-add-service' => 'Tambah Layanan',
-    'sidebar-add-testimonial' => 'Tambah Testimonial',
-    'sidebar-add-order' => 'Tambah Pesanan',
-    'sidebar-add-admin' => 'Tambah Admin',
+    'sidebar-add-event' => 'Tambah Event',
+    'sidebar-add-user' => 'Tambah User',
+    'sidebar-add-role' => 'Tambah Role',
 
-    'sidebar-change-language' => 'Ubah Bahasa',
 ];

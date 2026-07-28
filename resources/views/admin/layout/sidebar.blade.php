@@ -85,10 +85,9 @@
     <div class="p-4 flex items-center justify-between border-b border-gray-200 bg-white">
         <div class="flex items-center">
             <div class="w-10 h-10 flex items-center justify-center mr-3 overflow-hidden">
-                <img src="{{ asset('img/artisantz-logo-no-bg-full-version.webp') }}" alt="Logo"
-                    class="w-10 h-10 object-contain">
+                <img src="{{ asset('img/artisantz-logo-no-bg.webp') }}" alt="Logo" class="w-10 h-10 object-contain">
             </div>
-            <h1 class="text-lg font-semibold text-gray-800">Admin Artisantz</h1>
+            <h1 class="text-lg font-semibold text-gray-800">Admin Adiloka</h1>
         </div>
         <button id="sidebarClose" class="md:hidden p-2 rounded-lg hover:bg-gray-100 text-gray-500 hover:text-gray-700">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
@@ -103,8 +102,8 @@
         <ul class="space-y-2">
             <!-- Berita -->
             <li>
-                <a href="#"
-                    class="menu-item flex items-center p-3 rounded-lg text-gray-700 hover:bg-indigo-50 hover:text-[#0C0950] font-medium {{ request()->routeIs('admin-blogs', 'admin-blogs-update') ? 'active' : '' }}">
+                <a href="{{ route('admin-events') }}"
+                    class="menu-item flex items-center p-3 rounded-lg text-gray-700 hover:bg-indigo-50 hover:text-[#0C0950] font-medium {{ request()->routeIs('admin-events', 'admin-events-update') ? 'active' : '' }}">
                     <div class="w-6 h-6 mr-3 flex-shrink-0 rounded flex items-center justify-center">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -118,14 +117,14 @@
                             <path d="M8 16l4 0" />
                         </svg>
                     </div>
-                    <span>Event Management</span>
+                    <span>{{ __('admin-sidebar.sidebar-event') }}</span>
                 </a>
             </li>
 
             <!-- Layanan -->
             <li>
-                <a href="#"
-                    class="menu-item flex items-center p-3 rounded-lg text-gray-700 hover:bg-indigo-50 hover:text-[#0C0950] font-medium {{ request()->routeIs('admin-services', 'admin-services-update') ? 'active' : '' }}">
+                <a href="{{ route('admin-users') }}"
+                    class="menu-item flex items-center p-3 rounded-lg text-gray-700 hover:bg-indigo-50 hover:text-[#0C0950] font-medium {{ request()->routeIs('admin-users', 'admin-users-update') ? 'active' : '' }}">
                     <div class="w-6 h-6 mr-3 flex-shrink-0 rounded flex items-center justify-center">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -140,33 +139,77 @@
                             <path d="M3 14m0 1a1 1 0 0 1 1 -1h4a1 1 0 0 1 1 1v4a1 1 0 0 1 -1 1h-4a1 1 0 0 1 -1 -1z" />
                         </svg>
                     </div>
-                    <span>User Management</span>
+                    <span>{{ __('admin-sidebar.sidebar-user') }}</span>
                 </a>
             </li>
 
-            <!-- Menu Item: Pesanan -->
+            <!-- Testimonial -->
+            <li>
+                <a href="{{ route('admin-roles') }}"
+                    class="menu-item flex items-center p-3 rounded-lg text-gray-700 hover:bg-indigo-50 hover:text-[#0C0950] font-medium {{ request()->routeIs('admin-roles', 'admin-roles-update') ? 'active' : '' }}">
+                    <div class="w-6 h-6 mr-3 flex-shrink-0 rounded flex items-center justify-center">
+                        <svg class="w-5 h-5 text-gray-700 hover:text-[#0C0950]" fill="none" stroke="currentColor"
+                            viewBox="0 0 24 24" stroke-width="2">
+                            <path stroke-linecap="round" stroke-linejoin="round"
+                                d="M7 8h10M7 12h4m1 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-3l-4 4z" />
+                        </svg>
+                    </div>
+                    <span>{{ __('admin-sidebar.sidebar-role') }}</span>
+                </a>
+            </li>
+
+            <!-- Menu Item: Pengisian Form -->
             <li>
                 <button
                     class="menu-toggle w-full flex items-center justify-between p-3 rounded-lg text-gray-700 hover:bg-indigo-50 hover:text-[#0C0950] font-medium"
-                    data-target="pesanan-submenu">
+                    data-target="form-submenu">
                     <div class="flex items-center">
                         <div class="w-6 h-6 mr-3 flex-shrink-0 flex items-center justify-center">
                             <svg class="w-5 h-5 text-gray-700 icon-gray" fill="none" stroke="currentColor"
                                 viewBox="0 0 24 24" stroke-width="2">
                                 <path stroke-linecap="round" stroke-linejoin="round"
-                                    d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-3 7h3m-3 4h3m-6-4h.01M9 16h.01" />
+                                    d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
                             </svg>
                         </div>
-                        <span>Role Management</span>
+                        <span>{{ __('admin-sidebar.sidebar-form-submission') }}</span>
                     </div>
+                    <svg class="chevron w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7">
+                        </path>
+                    </svg>
                 </button>
+                <ul id="form-submenu"
+                    class="submenu ml-5 mt-2 space-y-1 {{ request()->routeIs('admin-events-create', 'admin-users-create', 'admin-roles-create') ? 'active' : '' }}">
+                    <li>
+                        <a href="{{ route('admin-events-create') }}"
+                            class="submenu-item block p-2 text-sm text-gray-600 hover:text-indigo-600 hover:bg-indigo-50 rounded {{ request()->routeIs('admin-events-create') ? 'font-bold text-indigo-600 bg-indigo-50' : '' }}">
+                            {{ __('admin-sidebar.sidebar-add-event') }}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin-users-create') }}"
+                            class="submenu-item block p-2 text-sm text-gray-600 hover:text-indigo-600 hover:bg-indigo-50 rounded {{ request()->routeIs('admin-users-create') ? 'font-bold text-indigo-600 bg-indigo-50' : '' }}">
+                            {{ __('admin-sidebar.sidebar-add-user') }}
+                        </a>
+                    </li>
+                    <li>
+                        <a href="{{ route('admin-roles-create') }}"
+                            class="submenu-item block p-2 text-sm text-gray-600 hover:text-indigo-600 hover:bg-indigo-50 rounded {{ request()->routeIs('admin-roles-create') ? 'font-bold text-indigo-600 bg-indigo-50' : '' }}">
+                            {{ __('admin-sidebar.sidebar-add-role') }}
+                        </a>
+                    </li>
+                </ul>
             </li>
+        </ul>
 
+        <!-- Logout Paling Bawah -->
+        <div class="flex flex-col mt-8 pt-4">
             <div class="border-t border-gray-200">
                 <button id="logoutBtn"
                     class="flex items-center p-3 rounded-lg text-red-600 hover:bg-red-50 font-medium w-full">
                     <div class="w-6 h-6 mr-3 flex-shrink-0">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                            stroke-width="2">
                             <path stroke-linecap="round" stroke-linejoin="round"
                                 d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                         </svg>
@@ -174,6 +217,7 @@
                     <span>Logout</span>
                 </button>
             </div>
+        </div>
     </nav>
 </aside>
 <!-- Add this script to your existing script section -->

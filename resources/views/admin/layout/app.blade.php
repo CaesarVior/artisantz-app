@@ -32,7 +32,7 @@
         }
 
         body {
-            background-image: url("{{ asset('img/') }}");
+            background-image: linear-gradient(rgba(0, 0, 0, 0.35), rgba(0, 0, 0, 0.35)), url("{{ asset('img/bg-header.png') }}");
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -58,7 +58,7 @@
                 class="absolute w-32 h-32 rounded-full border-[6px] border-t-blue-500 border-l-transparent border-b-transparent border-r-transparent spin-smooth">
             </div>
             <div class="w-24 h-24 bg-white rounded-full z-10">
-                <img src="{{ asset('img/Badge Adiloka Original-01.png') }}" alt="Logo"
+                <img src="{{ asset('img/artisantz-logo-no-bg.webp') }}" alt="Logo"
                     class="w-full h-full object-cover rounded-full heartbeat" />
             </div>
         </div>
