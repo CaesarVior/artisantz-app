@@ -69,21 +69,6 @@
                                 <th class="px-4 py-3 text-center text-sm font-bold text-gray-700 w-64">
                                     <span>{{ __('admin-role.index-table-title') }}</span>
                                 </th>
-                                <th class="px-4 py-3 text-center text-sm font-bold text-gray-700 w-24">
-                                    <span>{{ __('admin-role.index-table-image') }}</span>
-                                </th>
-                                <th class="px-4 py-3 text-center text-sm font-bold text-gray-700 w-96">
-                                    <span>{{ __('admin-role.index-table-content') }}</span>
-                                </th>
-                                <th class="px-4 py-3 text-center text-sm font-bold text-gray-700 w-32">
-                                    <span>{{ __('admin-role.index-table-created-at') }}</span>
-                                </th>
-                                <th class="px-4 py-3 text-left text-sm font-bold text-gray-700 w-28">
-                                    <span>{{ __('admin-role.index-table-status') }}</span>
-                                </th>
-                                <th class="px-4 py-3 text-center text-sm font-bold text-gray-700 w-28">
-                                    <span>{{ __('admin-role.index-table-action') }}</span>
-                                </th>
                             </tr>
                         </thead>
 

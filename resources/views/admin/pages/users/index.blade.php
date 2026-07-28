@@ -75,9 +75,6 @@
                                 <th class="px-4 py-3 text-center text-sm font-bold text-gray-700 w-96">
                                     <span>{{ __('admin-user.index-table-content') }}</span>
                                 </th>
-                                <th class="px-4 py-3 text-center text-sm font-bold text-gray-700 w-32">
-                                    <span>{{ __('admin-user.index-table-created-at') }}</span>
-                                </th>
                                 <th class="px-4 py-3 text-left text-sm font-bold text-gray-700 w-28">
                                     <span>{{ __('admin-user.index-table-status') }}</span>
                                 </th>

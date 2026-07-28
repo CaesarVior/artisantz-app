@@ -11,7 +11,7 @@ return [
     'index-list-status-pending' => 'Menunggu',
     'index-list-status-unpublish' => 'Tidak Terbit',
     'index-list-status-publish' => 'Terbit',
-    'index-add-event' => 'Tambah Berita',
+    'index-add-event' => 'Tambah Event',
 
     'index-table-number' => 'Nomor',
     'index-table-title' => 'Nama',
