@@ -8,42 +8,21 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Public Routes
-|--------------------------------------------------------------------------
-*/
-Route::get('/', [HomeController::class, 'index'])->name('home-index');
-
-Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery.index');
-Route::get('/about', function () {
-    return view('about');
-})->name('about');
-
-Route::get('/contact', function () {
-    return view('contact');
-})->name('contact');
-
-// Public Event
-Route::get('/events', [EventController::class, 'publicIndex'])->name('events.index');
-
-// Authentication
-Route::get('/login', [AuthController::class, 'showLoginForm'])->name('auth.login');
-Route::post('/login', [AuthController::class, 'login'])->name('login');
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+// Ambil host yang sedang diakses oleh browser
+$host = request()->getHost();
 
 /*
 |--------------------------------------------------------------------------
-| Admin Routes Group
+| Admin Routes Closure
 |--------------------------------------------------------------------------
 */
 $adminRoutes = function () {
     // Events
     Route::get('/event', [EventController::class, 'index'])->name('admin-events');
     Route::get('/event/create', [EventController::class, 'create'])->name('admin-events-create');
-    Route::post('/event', [EventController::class, 'store'])->name('admin-events-store'); // Disamakan URI-nya dengan POST
-    Route::get('/event/{id}/edit', [EventController::class, 'edit'])->name('admin-events-edit'); // RESTful URL convention
-    Route::put('/event/{id}', [EventController::class, 'update'])->name('admin-events-update'); // Gunakan {id} konsisten
+    Route::post('/event', [EventController::class, 'store'])->name('admin-events-store');
+    Route::get('/event/{id}/edit', [EventController::class, 'edit'])->name('admin-events-edit');
+    Route::put('/event/{id}', [EventController::class, 'update'])->name('admin-events-update');
     Route::delete('/event/{id}', [EventController::class, 'destroy'])->name('admin-events-destroy');
 
     // Users
@@ -65,22 +44,53 @@ $adminRoutes = function () {
 
 /*
 |--------------------------------------------------------------------------
-| Environment-Based Domain/Prefix Loading
+| Routing berdasarkan Host / Subdomain
 |--------------------------------------------------------------------------
 */
-if (app()->environment('local')) {
-    Route::prefix('admin')
-        ->middleware('auth')
-        ->group($adminRoutes);
-} else {
-    Route::domain('admin-artisantz.nivor.id')
-        ->middleware('auth')
-        ->group(function () use ($adminRoutes) {
-            Route::get('/', function () {
-                return redirect()->route('admin-events');
-            });
-            $adminRoutes();
+
+// 1. ISOLASI KHUSUS DOMAIN ADMIN (Staging / Production)
+if ($host === 'admin-artisantz.nivor.id') {
+
+    // Authentication Routes untuk Admin
+    Route::get('/login', [AuthController::class, 'showLoginForm'])->name('auth.login');
+    Route::post('/login', [AuthController::class, 'login'])->name('login');
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+    // Protected Admin Routes
+    Route::middleware('auth')->group(function () use ($adminRoutes) {
+        Route::get('/', function () {
+            return redirect()->route('admin-events');
         });
+
+        $adminRoutes();
+    });
+
+} else {
+
+    // 2. DOMAIN UTAMA / PUBLIC ROUTES
+    Route::get('/', [HomeController::class, 'index'])->name('home-index');
+    Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery.index');
+    Route::get('/about', function () {
+        return view('about');
+    })->name('about');
+    Route::get('/contact', function () {
+        return view('contact');
+    })->name('contact');
+
+    // Public Event
+    Route::get('/events', [EventController::class, 'publicIndex'])->name('events.index');
+
+    // Authentication Routes Public
+    Route::get('/login', [AuthController::class, 'showLoginForm'])->name('auth.login');
+    Route::post('/login', [AuthController::class, 'login'])->name('login');
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+    // Menerapkan Prefix /admin HANYA saat di environment LOCAL
+    if (app()->environment('local')) {
+        Route::prefix('admin')
+            ->middleware('auth')
+            ->group($adminRoutes);
+    }
 }
 
 require __DIR__.'/auth.php';
