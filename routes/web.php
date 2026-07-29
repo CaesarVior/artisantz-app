@@ -32,7 +32,7 @@ Route::get('/events', [EventController::class, 'publicIndex'])->name('events.ind
 */
 $authRoutes = function () {
     Route::get('/login', [AuthController::class, 'showLoginForm'])->name('auth.login');
-    Route::post('/login', [AuthController::class, 'login']);
+    Route::post('/login', [AuthController::class, 'login'])->name('login');
     Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');
 };
 
