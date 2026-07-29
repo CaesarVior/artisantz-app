@@ -27,7 +27,7 @@ Route::get('/events', [EventController::class, 'publicIndex'])->name('events.ind
 
 /*
 |--------------------------------------------------------------------------
-| Auth Routes (Untuk Halaman Login & Logout Admin)
+| Auth Routes Group (Login & Logout)
 |--------------------------------------------------------------------------
 */
 $authRoutes = function () {
@@ -38,11 +38,11 @@ $authRoutes = function () {
 
 /*
 |--------------------------------------------------------------------------
-| Admin Protected Routes Group
+| Admin Protected Routes Group (Tanpa Prefix 'admin' di dalam closure)
 |--------------------------------------------------------------------------
 */
 $adminRoutes = function () {
-    // Events
+    // Events -> URL: /event, /event/create, dst.
     Route::get('/event', [EventController::class, 'index'])->name('admin-events');
     Route::get('/event/create', [EventController::class, 'create'])->name('admin-events-create');
     Route::post('/event', [EventController::class, 'store'])->name('admin-events-store');
@@ -50,7 +50,7 @@ $adminRoutes = function () {
     Route::put('/event/{id}', [EventController::class, 'update'])->name('admin-events-update');
     Route::delete('/event/{id}', [EventController::class, 'destroy'])->name('admin-events-destroy');
 
-    // Users
+    // Users -> URL: /users, /users/create, dst.
     Route::get('/users', [UserController::class, 'index'])->name('admin-users-index');
     Route::get('/users/create', [UserController::class, 'create'])->name('admin-users-create');
     Route::post('/users', [UserController::class, 'store'])->name('admin-users-store');
@@ -58,7 +58,7 @@ $adminRoutes = function () {
     Route::put('/users/{id}', [UserController::class, 'update'])->name('admin-users-update');
     Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('admin-users-destroy');
 
-    // Roles
+    // Roles -> URL: /roles, /roles/create, dst.
     Route::get('/roles', [RoleController::class, 'index'])->name('admin-roles-index');
     Route::get('/roles/create', [RoleController::class, 'create'])->name('admin-roles-create');
     Route::post('/roles', [RoleController::class, 'store'])->name('admin-roles-store');
@@ -75,6 +75,7 @@ $adminRoutes = function () {
 if (app()->environment('local')) {
     Route::prefix('admin')->group(function () use ($authRoutes, $adminRoutes) {
         $authRoutes();
+
         Route::middleware(['login'])->group($adminRoutes);
     });
 } else {
@@ -82,9 +83,9 @@ if (app()->environment('local')) {
         Route::get('/', function () {
             return redirect()->route('admin-events');
         });
+
         $authRoutes();
-        Route::prefix('admin')->group($authRoutes);
-        Route::prefix('admin')->middleware(['login'])->group($adminRoutes);
+        Route::middleware(['login'])->group($adminRoutes);
     });
 }
 
