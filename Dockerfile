@@ -1,4 +1,3 @@
-# Stage 1: Composer Build
 FROM composer:2.7 AS vendor
 WORKDIR /app
 COPY database/ database/
@@ -19,6 +18,9 @@ COPY . .
 RUN npm run build
 
 FROM webdevops/php-nginx:8.3-alpine
+
+ENV WEB_DOCUMENT_ROOT=/app/public
+ENV APP_ENV=staging
 
 WORKDIR /app
 
