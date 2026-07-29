@@ -115,7 +115,6 @@
 
     <!-- Vite app.js -->
     @vite(['resources/js/app.js'])
-    @vite(['resources/js/loader.js'])
 </body>
 
 </html>
