@@ -70,11 +70,11 @@ $adminRoutes = function () {
 */
 if (app()->environment('local')) {
     Route::prefix('admin')
-        ->middleware('login')
+        ->middleware('auth')
         ->group($adminRoutes);
 } else {
     Route::domain('admin-artisantz.nivor.id')
-        ->middleware('login')
+        ->middleware('auth')
         ->group(function () use ($adminRoutes) {
             Route::get('/', function () {
                 return redirect()->route('admin-events');
