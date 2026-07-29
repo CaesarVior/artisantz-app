@@ -24,7 +24,7 @@ ENV APP_ENV=staging
 
 WORKDIR /app
 
-COPY laravel-routing.conf /opt/docker/etc/nginx/vhost.common.d/laravel-routing.conf
+COPY vhost.conf /opt/docker/etc/nginx/vhost.conf
 
 COPY --chown=application:application . .
 COPY --from=vendor --chown=application:application /app/vendor/ ./vendor/
