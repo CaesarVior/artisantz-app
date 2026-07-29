@@ -20,8 +20,6 @@
 
     <!-- Style CSS tambahan -->
     @vite(['resources/css/app.css'])
-    @vite(['resources/css/loader.css'])
-
 
     <style>
         @font-face {
