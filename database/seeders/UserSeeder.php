@@ -29,7 +29,7 @@ class UserSeeder extends Seeder
                 'role_id' => $adminRoleId,
                 'name' => 'Admin Artisantz',
                 'email' => 'admin@gmail.com',
-                'password' => '@Admin_ganteng1',
+                'password' => bcrypt('@Admin_ganteng1'),
                 'phone_number' => '081234567890',
                 'created_at' => now(),
                 'updated_at' => now(),
