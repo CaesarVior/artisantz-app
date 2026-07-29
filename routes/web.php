@@ -8,15 +8,16 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-// Ambil host yang sedang diakses oleh browser
-$host = request()->getHost();
-
 /*
 |--------------------------------------------------------------------------
 | Admin Routes Closure
 |--------------------------------------------------------------------------
 */
 $adminRoutes = function () {
+    Route::get('/', function () {
+        return redirect()->route('admin-events');
+    });
+
     // Events
     Route::get('/event', [EventController::class, 'index'])->name('admin-events');
     Route::get('/event/create', [EventController::class, 'create'])->name('admin-events-create');
@@ -44,53 +45,50 @@ $adminRoutes = function () {
 
 /*
 |--------------------------------------------------------------------------
-| Routing berdasarkan Host / Subdomain
+| Environment & Domain Registration
 |--------------------------------------------------------------------------
 */
 
-// 1. ISOLASI KHUSUS DOMAIN ADMIN (Staging / Production)
-if ($host === 'admin-artisantz.nivor.id') {
+if (app()->environment('local')) {
 
-    // Authentication Routes untuk Admin
+    // 1. LOKAL (localhost)
+    Route::get('/', [HomeController::class, 'index'])->name('home-index');
+    Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery.index');
+    Route::get('/about', fn () => view('about'))->name('about');
+    Route::get('/contact', fn () => view('contact'))->name('contact');
+    Route::get('/events', [EventController::class, 'publicIndex'])->name('events.index');
+
     Route::get('/login', [AuthController::class, 'showLoginForm'])->name('auth.login');
     Route::post('/login', [AuthController::class, 'login'])->name('login');
     Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-    // Protected Admin Routes
-    Route::middleware('auth')->group(function () use ($adminRoutes) {
-        Route::get('/', function () {
-            return redirect()->route('admin-events');
-        });
-
-        $adminRoutes();
-    });
+    Route::prefix('admin')->middleware('auth')->group($adminRoutes);
 
 } else {
 
-    // 2. DOMAIN UTAMA / PUBLIC ROUTES
-    Route::get('/', [HomeController::class, 'index'])->name('home-index');
-    Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery.index');
-    Route::get('/about', function () {
-        return view('about');
-    })->name('about');
-    Route::get('/contact', function () {
-        return view('contact');
-    })->name('contact');
+    // 2. STAGING / PRODUCTION (Multi-Domain)
 
-    // Public Event
-    Route::get('/events', [EventController::class, 'publicIndex'])->name('events.index');
+    // A. Domain Admin (HANYA route admin & login admin)
+    Route::domain('admin-artisantz.nivor.id')->group(function () use ($adminRoutes) {
+        Route::get('/login', [AuthController::class, 'showLoginForm'])->name('auth.login');
+        Route::post('/login', [AuthController::class, 'login'])->name('login');
+        Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
-    // Authentication Routes Public
-    Route::get('/login', [AuthController::class, 'showLoginForm'])->name('auth.login');
-    Route::post('/login', [AuthController::class, 'login'])->name('login');
-    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+        Route::middleware('auth')->group($adminRoutes);
+    });
 
-    // Menerapkan Prefix /admin HANYA saat di environment LOCAL
-    if (app()->environment('local')) {
-        Route::prefix('admin')
-            ->middleware('auth')
-            ->group($adminRoutes);
-    }
+    // B. Domain Utama / Public (artisantz.nivor.id)
+    Route::domain('artisantz.nivor.id')->group(function () {
+        Route::get('/', [HomeController::class, 'index'])->name('home-index');
+        Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery.index');
+        Route::get('/about', fn () => view('about'))->name('about');
+        Route::get('/contact', fn () => view('contact'))->name('contact');
+        Route::get('/events', [EventController::class, 'publicIndex'])->name('events.index');
+
+        Route::get('/login', [AuthController::class, 'showLoginForm'])->name('auth.login');
+        Route::post('/login', [AuthController::class, 'login'])->name('login');
+        Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+    });
 }
 
 require __DIR__.'/auth.php';
