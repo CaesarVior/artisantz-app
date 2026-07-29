@@ -69,14 +69,18 @@ $adminRoutes = function () {
 |--------------------------------------------------------------------------
 */
 if (app()->environment('local')) {
-    Route::prefix('admin')->group($adminRoutes);
+    Route::prefix('admin')
+        ->middleware('login')
+        ->group($adminRoutes);
 } else {
-    Route::domain('admin-artisantz.nivor.id')->middleware('login')->group(function () use ($adminRoutes) {
-        Route::get('/', function () {
-            return redirect('/login');
+    Route::domain('admin-artisantz.nivor.id')
+        ->middleware('login')
+        ->group(function () use ($adminRoutes) {
+            Route::get('/', function () {
+                return redirect()->route('admin-events');
+            });
+            $adminRoutes();
         });
-        Route::prefix('admin')->middleware('login')->group($adminRoutes);
-    });
 }
 
 require __DIR__.'/auth.php';
