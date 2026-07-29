@@ -71,13 +71,13 @@ $adminRoutes = function () {
 if (app()->environment('local')) {
     // 1. DILOKAL: Akses via localhost:8000/admin/events
     Route::prefix('admin')
-        ->middleware(['login', 'lang'])
+        ->middleware('auth')
         ->group($adminRoutes);
 
 } else {
     // 2. DI STAGING/PRODUCTION: Akses via admin-artisantz.nivor.id/events (Tanpa prefix /admin)
     Route::domain('admin-artisantz.nivor.id')
-        ->middleware(['login', 'lang'])
+        ->middleware('auth')
         ->group(function () use ($adminRoutes) {
             $adminRoutes();
         });
