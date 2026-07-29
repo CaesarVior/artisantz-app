@@ -3,7 +3,8 @@
 @if ($event)
     <section class="event">
         <div class="event-card-home">
-            <img src="{{ $bannerImg }}" alt="{{ $event->name }}">
+            <img src="{{ asset('event/parade-hujan-tour-album-punar/parade-hujan-banner.jpeg') }}"
+                alt="{{ $event->name }}">
 
             <div class="event-overlay"></div>
 

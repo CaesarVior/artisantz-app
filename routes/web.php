@@ -10,14 +10,16 @@ use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
-| Public Routes (Akses Utama Web Front-End)
+| Public Routes
 |--------------------------------------------------------------------------
 */
 Route::get('/', [HomeController::class, 'index'])->name('home-index');
+
 Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery.index');
 Route::get('/about', function () {
     return view('about');
 })->name('about');
+
 Route::get('/contact', function () {
     return view('contact');
 })->name('contact');
@@ -25,32 +27,26 @@ Route::get('/contact', function () {
 // Public Event
 Route::get('/events', [EventController::class, 'publicIndex'])->name('events.index');
 
-/*
-|--------------------------------------------------------------------------
-| Auth Routes Group (Login & Logout)
-|--------------------------------------------------------------------------
-*/
-$authRoutes = function () {
-    Route::get('/login', [AuthController::class, 'showLoginForm'])->name('auth.login');
-    Route::post('/login', [AuthController::class, 'login'])->name('login');
-    Route::post('/logout', [AuthController::class, 'logout'])->name('auth.logout');
-};
+// Authentication
+Route::get('/login', [AuthController::class, 'showLoginForm'])->name('auth.login');
+Route::post('/login', [AuthController::class, 'login'])->name('login');
+Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
 
 /*
 |--------------------------------------------------------------------------
-| Admin Protected Routes Group (Tanpa Prefix 'admin' di dalam closure)
+| Admin Routes Group
 |--------------------------------------------------------------------------
 */
 $adminRoutes = function () {
-    // Events -> URL: /event, /event/create, dst.
+    // Events
     Route::get('/event', [EventController::class, 'index'])->name('admin-events');
     Route::get('/event/create', [EventController::class, 'create'])->name('admin-events-create');
-    Route::post('/event', [EventController::class, 'store'])->name('admin-events-store');
-    Route::get('/event/{id}/edit', [EventController::class, 'edit'])->name('admin-events-edit');
-    Route::put('/event/{id}', [EventController::class, 'update'])->name('admin-events-update');
+    Route::post('/event', [EventController::class, 'store'])->name('admin-events-store'); // Disamakan URI-nya dengan POST
+    Route::get('/event/{id}/edit', [EventController::class, 'edit'])->name('admin-events-edit'); // RESTful URL convention
+    Route::put('/event/{id}', [EventController::class, 'update'])->name('admin-events-update'); // Gunakan {id} konsisten
     Route::delete('/event/{id}', [EventController::class, 'destroy'])->name('admin-events-destroy');
 
-    // Users -> URL: /users, /users/create, dst.
+    // Users
     Route::get('/users', [UserController::class, 'index'])->name('admin-users-index');
     Route::get('/users/create', [UserController::class, 'create'])->name('admin-users-create');
     Route::post('/users', [UserController::class, 'store'])->name('admin-users-store');
@@ -58,7 +54,7 @@ $adminRoutes = function () {
     Route::put('/users/{id}', [UserController::class, 'update'])->name('admin-users-update');
     Route::delete('/users/{id}', [UserController::class, 'destroy'])->name('admin-users-destroy');
 
-    // Roles -> URL: /roles, /roles/create, dst.
+    // Roles
     Route::get('/roles', [RoleController::class, 'index'])->name('admin-roles-index');
     Route::get('/roles/create', [RoleController::class, 'create'])->name('admin-roles-create');
     Route::post('/roles', [RoleController::class, 'store'])->name('admin-roles-store');
@@ -73,19 +69,13 @@ $adminRoutes = function () {
 |--------------------------------------------------------------------------
 */
 if (app()->environment('local')) {
-    Route::prefix('admin')->group(function () use ($authRoutes, $adminRoutes) {
-        $authRoutes();
-
-        Route::middleware(['login'])->group($adminRoutes);
-    });
+    Route::prefix('admin')->group($adminRoutes);
 } else {
-    Route::domain('admin-artisantz.nivor.id')->group(function () use ($authRoutes, $adminRoutes) {
+    Route::domain('admin-artisantz.nivor.id')->middleware('login')->group(function () use ($adminRoutes) {
         Route::get('/', function () {
-            return redirect()->route('admin-events');
+            return redirect('/login');
         });
-
-        $authRoutes();
-        Route::middleware(['login'])->group($adminRoutes);
+        Route::prefix('admin')->middleware('login')->group($adminRoutes);
     });
 }
 

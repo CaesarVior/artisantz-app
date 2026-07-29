@@ -7,6 +7,7 @@ use App\Http\Requests\Auth\LoginRequest;
 use App\Http\Requests\Auth\RegisterRequest;
 use App\Models\Role;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
 
 class AuthController extends Controller
@@ -18,7 +19,7 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
-    public function store(LoginRequest $request)
+    public function login(LoginRequest $request)
     {
         $credentials = $request->only('email', 'password');
 
@@ -36,7 +37,6 @@ class AuthController extends Controller
 
     public function showRegisterForm(): View
     {
-        // Asumsi data roles dikirim ke view pendaftaran
         $roles = Role::all();
 
         return view('auth.register', compact('roles'));

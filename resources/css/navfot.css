@@ -173,8 +173,8 @@ body {
 .event-card-home {
   position: relative;
   width: 100%;
-  height: 220px;
-  transform: translate(0%, -110%);
+  height: 100%;
+  transform: translate(0%, -20%);
   overflow: hidden;
   border-radius: 22px;
 
@@ -185,7 +185,7 @@ body {
 
 .event-card-home img {
   width: 100%;
-  height: 100%;
+  height: 120%;
 
   object-fit: cover;
   transition: 0.5s;
@@ -196,7 +196,6 @@ body {
 .event-overlay {
   position: absolute;
   inset: 0;
-
   background: rgba(0, 0, 0, 0.38);
 }
 
