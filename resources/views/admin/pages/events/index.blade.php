@@ -8,14 +8,14 @@
             <h1 class="text-4xl font-semibold text-white mb-2 inline-block px-6 border-b-[1.5px] border-black pb-2">
                 {{ __('admin-event.index-event') }}
             </h1>
-            <p class="text-lg font-semibold text-white">Through Language we Connect the World for You</p>
+            <p class="text-lg font-semibold text-white">FBN Artisantz Coffee & Eatery</p>
         </div>
 
         <div class="bg-white pb-5 rounded-2xl shadow-sm px-6 py-5">
             <div class="rounded-2xl">
                 <div class="flex flex-col lg:flex-row lg:items-center gap-4 mb-4">
                     <!-- Tombol Tambahkan - di atas pada mobile, di kanan pada desktop -->
-                    <a href=""
+                    <a href="{{ route('admin-events-create') }}"
                         class="order-first lg:order-last w-full lg:w-auto bg-[#426EFF] hover:bg-blue-500 text-white font-medium py-2 px-4 rounded-lg shadow-md transition-colors duration-200 flex items-center justify-center gap-2 text-sm whitespace-nowrap">
                         <div class="w-4 h-4 bg-white rounded flex items-center justify-center">
                             <svg class="w-3 h-3 text-[#426EFF]" fill="none" stroke="currentColor" stroke-width="2"
@@ -60,34 +60,128 @@
             <!-- Table Container with Horizontal Scroll -->
             <div class="overflow-x-auto whitespace-nowrap">
                 <div class="min-w-[800px]" id="eventTable">
-                    <table class="w-full table-fixed">
+                    <table class="w-full table-fixed divide-y divide-gray-200">
                         <thead class="bg-[#F7F6FE]">
                             <tr>
-                                <th class="px-4 py-3 text-center text-sm font-bold text-gray-700 w-16">
-                                    <span>{{ __('admin-event.index-table-number') }}</span>
+                                <th scope="col"
+                                    class="px-4 py-3.5 text-center text-xs font-bold text-gray-700 uppercase tracking-wider w-16">
+                                    {{ __('admin-event.index-table-number') }}
                                 </th>
-                                <th class="px-4 py-3 text-center text-sm font-bold text-gray-700 w-64">
-                                    <span>{{ __('admin-event.index-table-title') }}</span>
+                                <th scope="col"
+                                    class="px-6 py-3.5 text-left text-xs font-bold text-gray-700 uppercase tracking-wider w-48">
+                                    {{ __('admin-event.index-table-title') }}
                                 </th>
-                                <th class="px-4 py-3 text-center text-sm font-bold text-gray-700 w-24">
-                                    <span>{{ __('admin-event.index-table-image') }}</span>
+                                <th scope="col"
+                                    class="px-4 py-3.5 text-center text-xs font-bold text-gray-700 uppercase tracking-wider w-24">
+                                    {{ __('admin-event.index-table-image') }}
                                 </th>
-                                <th class="px-4 py-3 text-center text-sm font-bold text-gray-700 w-96">
-                                    <span>{{ __('admin-event.index-table-content') }}</span>
+                                <th scope="col"
+                                    class="px-6 py-3.5 text-left text-xs font-bold text-gray-700 uppercase tracking-wider">
+                                    {{ __('admin-event.index-table-content') }}
                                 </th>
-                                <th class="px-4 py-3 text-center text-sm font-bold text-gray-700 w-32">
-                                    <span>{{ __('admin-event.index-table-created-at') }}</span>
+                                <th scope="col"
+                                    class="px-4 py-3.5 text-center text-xs font-bold text-gray-700 uppercase tracking-wider w-36">
+                                    {{ __('admin-event.index-table-created-at') }}
                                 </th>
-                                <th class="px-4 py-3 text-left text-sm font-bold text-gray-700 w-28">
-                                    <span>{{ __('admin-event.index-table-status') }}</span>
-                                </th>
-                                <th class="px-4 py-3 text-center text-sm font-bold text-gray-700 w-28">
-                                    <span>{{ __('admin-event.index-table-action') }}</span>
+                                <th scope="col"
+                                    class="px-4 py-3.5 text-center text-xs font-bold text-gray-700 uppercase tracking-wider w-36">
+                                    {{ __('admin-event.index-table-action') }}
                                 </th>
                             </tr>
                         </thead>
 
-                        <tbody class="bg-white divide-y divide-gray-200" id="tableBody">
+                        <tbody class="bg-white divide-y divide-gray-200 text-sm text-gray-700" id="tableBody">
+                            @forelse ($events as $index => $event)
+                                <tr class="hover:bg-slate-50/80 transition duration-150">
+                                    {{-- Nomor --}}
+                                    <td class="px-4 py-4 text-center font-medium text-gray-500 whitespace-nowrap">
+                                        {{ method_exists($events, 'firstItem') ? $events->firstItem() + $index : $loop->iteration }}
+                                    </td>
+
+                                    {{-- Nama Event --}}
+                                    <td class="px-6 py-4 font-semibold text-gray-900 truncate">
+                                        {{ $event->name }}
+                                    </td>
+
+                                    {{-- Foto --}}
+                                    <td class="px-4 py-4">
+                                        <div class="flex justify-center items-center">
+                                            @php
+                                                $photos = is_array($event->photo)
+                                                    ? $event->photo
+                                                    : json_decode($event->photo, true);
+                                                $firstPhoto =
+                                                    is_array($photos) && count($photos) > 0 ? $photos[0] : null;
+                                            @endphp
+
+                                            @if ($firstPhoto)
+                                                <div class="relative">
+                                                    <img src="{{ asset($firstPhoto) }}" alt="{{ $event->name }}"
+                                                        class="w-12 h-12 object-cover rounded-xl border border-gray-200 shadow-sm"
+                                                        onerror="this.onerror=null; this.src='{{ asset('img/no-image.jpg') }}';">
+
+                                                    @if (is_array($photos) && count($photos) > 1)
+                                                        <span
+                                                            class="absolute -top-1 -right-1 bg-indigo-600 text-white text-[10px] font-bold px-1.5 py-0.5 rounded-full shadow">
+                                                            +{{ count($photos) - 1 }}
+                                                        </span>
+                                                    @endif
+                                                </div>
+                                            @else
+                                                <img src="{{ asset('img/no-image.jpg') }}" alt="No Image Available"
+                                                    class="w-12 h-12 object-cover rounded-xl border border-gray-200 shadow-sm">
+                                            @endif
+                                        </div>
+                                    </td>
+
+                                    {{-- Deskripsi/Content (Clean Text) --}}
+                                    <td class="px-6 py-4 text-gray-600">
+                                        <p class="line-clamp-2 text-xs leading-relaxed">
+                                            {{ Str::limit(strip_tags($event->description ?? $event->theme), 100) }}
+                                        </p>
+                                    </td>
+
+                                    {{-- Tanggal --}}
+                                    <td class="px-4 py-4 text-center text-xs text-gray-500 whitespace-nowrap">
+                                        {{ $event->event_date ? \Carbon\Carbon::parse($event->event_date)->translatedFormat('d M Y, H:i') : ($event->created_at ? \Carbon\Carbon::parse($event->created_at)->translatedFormat('d M Y, H:i') : '-') }}
+                                    </td>
+
+                                    {{-- Action Buttons --}}
+                                    <td class="px-4 py-4 text-center whitespace-nowrap">
+                                        <div class="flex items-center justify-center space-x-2">
+                                            <a href="{{ route('admin-events-edit', $event->id) }}"
+                                                class="inline-block px-3 py-1.5 bg-amber-500 hover:bg-amber-600 text-white text-xs font-medium rounded-lg transition duration-200 shadow-sm">
+                                                Edit
+                                            </a>
+
+                                            <form action="{{ route('admin-events-destroy', $event->id) }}" method="POST"
+                                                class="inline-block"
+                                                onsubmit="return confirm('Apakah Anda yakin ingin menghapus event ini?');">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button type="submit"
+                                                    class="px-3 py-1.5 bg-red-500 hover:bg-red-600 text-white text-xs font-medium rounded-lg transition duration-200 shadow-sm">
+                                                    Hapus
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="6" class="px-6 py-12 text-center text-gray-400 bg-gray-50/50">
+                                        <div class="flex flex-col items-center justify-center">
+                                            <svg class="w-10 h-10 mb-2 text-gray-300" fill="none"
+                                                stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"
+                                                    d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10">
+                                                </path>
+                                            </svg>
+                                            <p class="text-xs font-medium text-gray-500">Belum ada data event.</p>
+                                        </div>
+                                    </td>
+                                </tr>
+                            @endforelse
                         </tbody>
                     </table>
                 </div>

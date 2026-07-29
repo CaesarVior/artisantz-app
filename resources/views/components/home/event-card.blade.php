@@ -1,23 +1,33 @@
-<section class="event">
+@props(['event' => null, 'bannerImg' => asset('img/event-banner.webp')])
 
-    <div class="event-card-home">
+@if ($event)
+    <section class="event">
+        <div class="event-card-home">
+            <img src="{{ $bannerImg }}" alt="{{ $event->name }}">
 
-        <img src="{{ asset('img/event-banner.webp') }}" alt="New Event">
+            <div class="event-overlay"></div>
 
-        <div class="event-overlay"></div>
+            <div class="event-content" style="z-index: 2; color: #fff;">
+                <span class="event-badge"
+                    style="background: #e74c3c; color: #fff; padding: 2px 10px; border-radius: 12px; font-size: 0.75rem; font-weight: bold; width: fit-content; margin-bottom: 6px;">
+                    UPCOMING EVENT
+                </span>
 
-        <div class="event-content">
+                <h3 class="event-title"
+                    style="color: #ffffff; text-shadow: 0 2px 4px rgba(0,0,0,0.6); margin: 0; font-weight: 700;">
+                    {{ $event->name }}
+                </h3>
 
-            <span class="event-title">
-                New Event!
-            </span>
+                <p class="event-date"
+                    style="color: #f1f1f1; text-shadow: 0 1px 3px rgba(0,0,0,0.6); margin: 4px 0 14px; font-size: 0.9rem;">
+                    <i class="far fa-calendar-alt me-1"></i>
+                    {{ \Carbon\Carbon::parse($event->event_date)->translatedFormat('d F Y') }}
+                </p>
 
-            <a href="/event" class="event-btn">
-                View More
-            </a>
-
+                <a href="{{ route('events.index') }}" class="event-btn">
+                    View More
+                </a>
+            </div>
         </div>
-
-    </div>
-
-</section>
+    </section>
+@endif

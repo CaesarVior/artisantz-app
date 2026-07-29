@@ -11,8 +11,14 @@ class EventModel extends Model
 
     protected $fillable = ['user_id', 'name', 'photo', 'theme', 'event_date', 'description'];
 
+    protected $casts = [
+        'photo' => 'array',
+        'event_date' => 'datetime',
+    ];
+
+    // GUNAKAN belongsTo DI SINI
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo(UserModel::class, 'user_id');
     }
 }

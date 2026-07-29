@@ -9,6 +9,8 @@ class RoleModel extends Model
 {
     protected $fillable = ['name'];
 
+    protected $table = 'roles';
+
     public function users(): HasMany
     {
         return $this->hasMany(User::class);

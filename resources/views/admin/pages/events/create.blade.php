@@ -1,81 +1,139 @@
 @extends('admin.layout.app')
 
-@section('title', 'Tambah Berita')
+@section('title', 'Tambah Event')
 
 @section('content')
     <div class="container mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 lg:py-12">
         <div class="text-center mb-8">
             <h1
                 class="text-2xl sm:text-3xl lg:text-4xl font-semibold text-white mb-2 sm:mb-4 inline-block px-6 border-b-[1.5px] border-white pb-2">
-                {{ __('admin-news.create-form-add-news') }}
+                {{ __('admin-event.create-form-add-event') }}
             </h1>
-            <p class="text-lg font-semibold text-white">Through Language we Connect the World for You</p>
+            <p class="text-lg font-semibold text-white">FBN Artisantz Coffee & Eatery</p>
         </div>
 
         <div class="container mx-auto max-w-6xl">
-            <div class="bg-white rounded-xl max-w-2xl mx-auto border border-black p-6 sm:p-8 lg:p-12">
-                <form enctype="multipart/form-data" id="newsForm">
+            <div class="bg-white rounded-2xl max-w-2xl mx-auto border border-gray-200 shadow-md p-6 sm:p-8 lg:p-10">
+                <form action="{{ route('admin-events-store') }}" method="POST" enctype="multipart/form-data" id="eventForm">
                     @csrf
-                    <div class="mb-6">
-                        <label for="title"
-                            class="block text-gray-700 text-sm font-medium mb-1">{{ __('admin-news.create-news-title') }}</label>
-                        <input type="text" id="title" name="title"
-                            class="w-full px-0 py-2 border-b border-black focus:outline-none focus:ring-0 text-xs placeholder-gray-500 transition-colors duration-200"
-                            placeholder="{{ __('admin-news.create-news-title-placeholder') }}">
+                    {{-- Name Input --}}
+                    <div class="mb-5">
+                        <label for="name" class="block text-gray-700 text-sm font-semibold mb-2">
+                            {{ __('admin-event.create-event-title') }}
+                        </label>
+                        <input type="text" id="name" name="name" value="{{ old('name') }}"
+                            class="w-full px-4 py-2.5 text-sm border @error('name') border-red-500 @else border-gray-300 @enderror rounded-lg focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 placeholder-gray-400 transition duration-200"
+                            placeholder="{{ __('admin-event.create-event-title-placeholder') }}">
+                        @error('name')
+                            <p class="text-red-500 text-xs mt-1.5">{{ $message }}</p>
+                        @enderror
                     </div>
 
-                    <!-- Container untuk label dan Quill -->
-                    <div class="mb-6">
-                        <label for="content"
-                            class="block text-gray-700 text-sm font-medium mb-1">{{ __('admin-news.create-news-description') }}</label>
-                        <!-- Quill Editor -->
-                        <div id="quillContent"
-                            class="bg-white border border-black rounded p-2 text-sm h-48 sm:h-56 lg:h-64">
+                    {{-- Theme Input --}}
+                    <div class="mb-5">
+                        <label for="theme" class="block text-gray-700 text-sm font-semibold mb-2">
+                            {{ __('admin-event.create-event-theme') }}
+                        </label>
+                        <input type="text" id="theme" name="theme" value="{{ old('theme') }}"
+                            class="w-full px-4 py-2.5 text-sm border @error('theme') border-red-500 @else border-gray-300 @enderror rounded-lg focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 placeholder-gray-400 transition duration-200"
+                            placeholder="{{ __('admin-event.create-event-theme-placeholder') }}">
+                        @error('theme')
+                            <p class="text-red-500 text-xs mt-1.5">{{ $message }}</p>
+                        @enderror
+                    </div>
+
+                    {{-- Quill Description Input --}}
+                    <div class="mb-5">
+                        <label class="block text-gray-700 text-sm font-semibold mb-2">
+                            {{ __('admin-event.create-event-description') }}
+                        </label>
+                        <div
+                            class="rounded-lg border @error('description') border-red-500 @else border-gray-300 @enderror overflow-hidden focus-within:border-blue-500 focus-within:ring-1 focus-within:ring-blue-500 transition duration-200">
+                            <div id="quillContent" class="bg-white text-sm h-48 sm:h-56 lg:h-64"></div>
                         </div>
-                        <!-- Hidden input untuk isi konten -->
-                        <input type="hidden" id="content" name="content">
+                        <input type="hidden" id="description" name="description" value="{{ old('description') }}">
+                        @error('description')
+                            <p class="text-red-500 text-xs mt-1.5">{{ $message }}</p>
+                        @enderror
                     </div>
 
+                    {{-- Event Date Input (Langsung Buka Picker saat Diklik) --}}
+                    <div class="mb-5">
+                        <label for="event_date" class="block text-gray-700 text-sm font-semibold mb-2">
+                            {{ __('admin-event.create-event-date') }}
+                        </label>
+                        <input type="datetime-local" id="event_date" name="event_date"
+                            value="{{ old('event_date', isset($event->event_date) ? \Carbon\Carbon::parse($event->event_date)->format('Y-m-d\TH:i') : '') }}"
+                            onclick="this.showPicker()"
+                            class="w-full px-4 py-2.5 text-sm border @error('event_date') border-red-500 @else border-gray-300 @enderror rounded-lg focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 text-gray-700 cursor-pointer transition duration-200">
+                        @error('event_date')
+                            <p class="text-red-500 text-xs mt-1.5">{{ $message }}</p>
+                        @enderror
+                    </div>
 
+                    {{-- Photo Upload Input (Multiple Preview) --}}
                     <div class="mb-8">
-                        <label for="images"
-                            class="block text-gray-700 text-sm font-medium mb-1">{{ __('admin-news.create-news-upload-file') }}</label>
-                        <div class="mt-1 flex justify-center px-6 pt-5 pb-6 border-b border-black">
-                            <div class="text-center">
-                                <!-- Bungkus SVG dan IMG dalam satu container supaya bisa toggle -->
-                                <div id="previewContainer"
-                                    class="mx-auto w-40 h-40 flex items-center justify-center rounded shadow border border-gray-300 bg-gray-50 transition-colors duration-200">
-                                    <svg id="uploadSvg" class="h-12 w-12 text-gray-400" fill="none" viewBox="0 0 48 48"
-                                        xmlns="http://www.w3.org/2000/svg" aria-hidden="true" focusable="false">
-                                        <path
-                                            d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
-                                            stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                                            stroke-linejoin="round" />
-                                    </svg>
-                                    <img id="imagePreview" class="hidden w-full h-full object-cover rounded"
-                                        alt="Preview Gambar" />
-                                </div>
+                        <label class="block text-gray-700 text-sm font-semibold mb-2">
+                            {{ __('admin-event.create-event-upload-file') }}
+                        </label>
 
-                                <div class="flex text-sm text-gray-400 mt-3">
-                                    <label for="images"
-                                        class="relative cursor-pointer bg-white rounded-md font-medium hover:text-gray-600">
-                                        <span>{{ __('admin-news.create-news-upload-file-placeholder') }}</span>
-                                        <input id="images" name="images" type="file" class="sr-only"
-                                            accept="image/*" />
-                                    </label>
-                                </div>
+                        <label for="photos"
+                            class="block p-6 border-2 border-dashed @error('photos') border-red-400 bg-red-50/30 @else border-gray-300 bg-gray-50/50 @enderror rounded-xl text-center hover:bg-gray-100/80 cursor-pointer transition duration-200">
+
+                            {{-- Container Grid Preview Gambar --}}
+                            <div id="previewGrid" class="flex flex-wrap items-center justify-center gap-3 mb-3">
+
+                                {{-- Tampilan Awal (Halaman Update: Jika sudah ada foto lama) --}}
+                                @if (!empty($event->photo) && is_array($event->photo))
+                                    @foreach ($event->photo as $path)
+                                        <div
+                                            class="w-24 h-24 rounded-lg border border-gray-200 bg-white shadow-sm overflow-hidden relative">
+                                            <img src="{{ asset($path) }}" class="w-full h-full object-cover"
+                                                alt="Preview Gambar" />
+                                        </div>
+                                    @endforeach
+                                @else
+                                    {{-- Placeholder SVG jika belum ada gambar --}}
+                                    <div id="placeholderBox"
+                                        class="w-24 h-24 flex items-center justify-center rounded-lg border border-gray-200 bg-white shadow-sm">
+                                        <svg class="h-10 w-10 text-gray-400" fill="none" viewBox="0 0 48 48"
+                                            aria-hidden="true">
+                                            <path
+                                                d="M28 8H12a4 4 0 00-4 4v20m32-12v8m0 0v8a4 4 0 01-4 4H12a4 4 0 01-4-4v-4m32-4l-3.172-3.172a4 4 0 00-5.656 0L28 28M8 32l9.172-9.172a4 4 0 015.656 0L28 28m0 0l4 4m4-24h8m-4-4v8m-12 4h.02"
+                                                stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                                stroke-linejoin="round" />
+                                        </svg>
+                                    </div>
+                                @endif
                             </div>
-                        </div>
+
+                            <span
+                                class="inline-flex items-center px-4 py-2 bg-white border border-gray-300 rounded-lg text-xs font-semibold text-gray-700 shadow-sm pointer-events-none">
+                                Pilih Foto Event (Bisa Banyak)
+                            </span>
+
+                            {{-- Input Multiple Files --}}
+                            <input id="photos" name="photos[]" type="file" class="sr-only" accept="image/*"
+                                multiple />
+                        </label>
+
+                        @error('photos')
+                            <p class="text-red-500 text-xs mt-1.5 text-center">{{ $message }}</p>
+                        @enderror
+                        @error('photos.*')
+                            <p class="text-red-500 text-xs mt-1.5 text-center">{{ $message }}</p>
+                        @enderror
                     </div>
 
-                    <div class="text-center flex justify-center items-center space-x-5">
+                    {{-- Submit Buttons --}}
+                    <div class="text-center flex justify-center items-center space-x-4 pt-2">
                         <button type="button" onclick="history.back()"
-                            class="py-1 px-9 text-white bg-blue-500 hover:bg-blue-600 rounded-lg text-base font-light transition-colors duration-200">
-                            {{ __('admin-news.create-news-cancel') }}
+                            class="py-2.5 px-8 text-white bg-blue-500 hover:bg-blue-600 rounded-lg text-sm font-medium transition duration-200 shadow-sm">
+                            {{ __('admin-event.create-event-cancel') }}
                         </button>
                         <button type="submit" id="submitBtn"
-                            class="py-1 px-9 text-white bg-blue-500 hover:bg-blue-600 rounded-lg text-base font-light transition-colors duration-200">
-                            {{ __('admin-news.create-news-add') }}
+                            class="py-2.5 px-8 text-white bg-blue-500 hover:bg-blue-600 rounded-lg text-sm font-medium transition duration-200 shadow-sm">
+                            {{ __('admin-event.create-event-add') }}
                         </button>
                     </div>
                 </form>
@@ -83,5 +141,5 @@
         </div>
     </div>
 
-    @vite('resources/js/admin/pages/blog/create.js')
+    @vite('resources/js/admin/pages/events/create.js')
 @endsection

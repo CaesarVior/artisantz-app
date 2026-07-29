@@ -8,14 +8,14 @@
             <h1 class="text-4xl font-semibold text-white mb-2 inline-block px-6 border-b-[1.5px] border-black pb-2">
                 {{ __('admin-role.index-role') }}
             </h1>
-            <p class="text-lg font-semibold text-white">Through Language we Connect the World for You</p>
+            <p class="text-lg font-semibold text-white">FBN Artisantz Coffee & Eatery</p>
         </div>
 
         <div class="bg-white pb-5 rounded-2xl shadow-sm px-6 py-5">
             <div class="rounded-2xl">
                 <div class="flex flex-col lg:flex-row lg:items-center gap-4 mb-4">
                     <!-- Tombol Tambahkan - di atas pada mobile, di kanan pada desktop -->
-                    <a href=""
+                    <a href="{{ route('admin-roles-create') }}"
                         class="order-first lg:order-last w-full lg:w-auto bg-[#426EFF] hover:bg-blue-500 text-white font-medium py-2 px-4 rounded-lg shadow-md transition-colors duration-200 flex items-center justify-center gap-2 text-sm whitespace-nowrap">
                         <div class="w-4 h-4 bg-white rounded flex items-center justify-center">
                             <svg class="w-3 h-3 text-[#426EFF]" fill="none" stroke="currentColor" stroke-width="2"
@@ -40,15 +40,6 @@
                                 </svg>
                             </div>
                         </div>
-
-
-                        <select id="statusFilter"
-                            class="w-[40%] lg:w-48 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#6a6ad9] focus:border-transparent bg-white text-gray-700 appearance-none bg-[url('data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHdpZHRoPSIyNCIgaGVpZ2h0PSIyNCIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSJub25lIiBzdHJva2U9ImN1cnJlbnRDb2xvciIgc3Ryb2tlLXdpZHRoPSIyIiBzdHJva2UtbGluZWNhcD0icm91bmQiIHN0cm9rZS1saW5lam9pbj0icm91bmQiPjxwb2x5bGluZSBwb2ludHM9IjYgOSAxMiAxNSAxOCA5Ij48L3BvbHlsaW5lPjwvc3ZnPg==')] bg-no-repeat bg-[right_0.5rem_center] bg-[length:1rem]">
-                            <option value=""><span>{{ __('admin-role.index-status') }}</span></option>
-                            <option value="pending">{{ __('admin-role.index-list-status-pending') }}</option>
-                            <option value="publish">{{ __('admin-role.index-list-status-publish') }}</option>
-                            <option value="unpublish">{{ __('admin-role.index-list-status-unpublish') }}</option>
-                        </select>
                     </div>
                 </div>
             </div>
@@ -63,33 +54,83 @@
                     <table class="w-full table-fixed">
                         <thead class="bg-[#F7F6FE]">
                             <tr>
+                                {{-- Nomor --}}
                                 <th class="px-4 py-3 text-center text-sm font-bold text-gray-700 w-16">
                                     <span>{{ __('admin-role.index-table-number') }}</span>
                                 </th>
-                                <th class="px-4 py-3 text-center text-sm font-bold text-gray-700 w-64">
+
+                                {{-- Nama Role --}}
+                                <th class="px-4 py-3 text-left text-sm font-bold text-gray-700 w-64">
                                     <span>{{ __('admin-role.index-table-title') }}</span>
                                 </th>
-                                <th class="px-4 py-3 text-center text-sm font-bold text-gray-700 w-24">
-                                    <span>{{ __('admin-role.index-table-image') }}</span>
-                                </th>
-                                <th class="px-4 py-3 text-center text-sm font-bold text-gray-700 w-96">
-                                    <span>{{ __('admin-role.index-table-content') }}</span>
-                                </th>
-                                <th class="px-4 py-3 text-center text-sm font-bold text-gray-700 w-32">
+
+                                {{-- Tanggal Dibuat --}}
+                                <th class="px-4 py-3 text-center text-sm font-bold text-gray-700 w-44">
                                     <span>{{ __('admin-role.index-table-created-at') }}</span>
                                 </th>
-                                <th class="px-4 py-3 text-left text-sm font-bold text-gray-700 w-28">
-                                    <span>{{ __('admin-role.index-table-status') }}</span>
-                                </th>
-                                <th class="px-4 py-3 text-center text-sm font-bold text-gray-700 w-28">
+
+                                {{-- Aksi (Edit & Delete) --}}
+                                <th class="px-4 py-3 text-center text-sm font-bold text-gray-700 w-36">
                                     <span>{{ __('admin-role.index-table-action') }}</span>
                                 </th>
                             </tr>
                         </thead>
 
                         <tbody class="bg-white divide-y divide-gray-200" id="tableBody">
+                            @forelse ($roles as $index => $role)
+                                <tr class="hover:bg-gray-50 transition-colors">
+                                    {{-- Nomor --}}
+                                    <td class="px-4 py-3 text-center text-sm text-gray-600">
+                                        {{ $roles->firstItem() + $index }}
+                                    </td>
+
+                                    {{-- Nama Role --}}
+                                    <td class="px-4 py-3 text-left text-sm font-medium text-gray-900 truncate">
+                                        {{ $role->name }}
+                                    </td>
+
+                                    {{-- Tanggal Dibuat --}}
+                                    <td class="px-4 py-3 text-center text-sm text-gray-600">
+                                        {{ $role->created_at ? $role->created_at->format('d M Y, H:i') : '-' }}
+                                    </td>
+
+                                    {{-- Aksi --}}
+                                    <td class="px-4 py-3 text-center text-sm space-x-2">
+                                        {{-- Tombol Edit mengarah ke route getById --}}
+                                        <a href="{{ route('admin-roles-edit', $role->id) }}"
+                                            class="inline-block px-3 py-1 bg-yellow-500 hover:bg-yellow-600 text-white text-xs rounded transition-colors"
+                                            title="Edit">
+                                            Edit
+                                        </a>
+
+                                        {{-- Tombol Hapus --}}
+                                        <form action="{{ route('admin-roles-destroy', $role->id) }}" method="POST"
+                                            class="inline-block"
+                                            onsubmit="return confirm('Apakah Anda yakin ingin menghapus role ini?');">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit"
+                                                class="px-3 py-1 bg-red-500 hover:bg-red-600 text-white text-xs rounded transition-colors"
+                                                title="Hapus">
+                                                Hapus
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="4" class="px-4 py-6 text-center text-sm text-gray-500">
+                                        Data role belum tersedia.
+                                    </td>
+                                </tr>
+                            @endforelse
                         </tbody>
                     </table>
+
+                    {{-- Link Pagination --}}
+                    <div class="mt-4 px-4">
+                        {{ $roles->links() }}
+                    </div>
                 </div>
             </div>
 

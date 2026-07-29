@@ -9,7 +9,7 @@
         <x-home.hero />
 
         {{-- Event --}}
-        <x-home.event-card />
+        <x-home.event-card :event="$event" :banner-img="$bannerImg" />
 
         {{-- What is Artisantz --}}
         <x-home.container />

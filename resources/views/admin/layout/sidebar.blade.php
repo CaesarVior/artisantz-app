@@ -87,7 +87,7 @@
             <div class="w-10 h-10 flex items-center justify-center mr-3 overflow-hidden">
                 <img src="{{ asset('img/artisantz-logo-no-bg.webp') }}" alt="Logo" class="w-10 h-10 object-contain">
             </div>
-            <h1 class="text-lg font-semibold text-gray-800">Admin Adiloka</h1>
+            <h1 class="text-lg font-semibold text-gray-800">Admin Artisantz</h1>
         </div>
         <button id="sidebarClose" class="md:hidden p-2 rounded-lg hover:bg-gray-100 text-gray-500 hover:text-gray-700">
             <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24"
@@ -123,8 +123,8 @@
 
             <!-- Layanan -->
             <li>
-                <a href="{{ route('admin-users') }}"
-                    class="menu-item flex items-center p-3 rounded-lg text-gray-700 hover:bg-indigo-50 hover:text-[#0C0950] font-medium {{ request()->routeIs('admin-users', 'admin-users-update') ? 'active' : '' }}">
+                <a href="{{ route('admin-users-index') }}"
+                    class="menu-item flex items-center p-3 rounded-lg text-gray-700 hover:bg-indigo-50 hover:text-[#0C0950] font-medium {{ request()->routeIs('admin-users-index', 'admin-users-update') ? 'active' : '' }}">
                     <div class="w-6 h-6 mr-3 flex-shrink-0 rounded flex items-center justify-center">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
                             fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
@@ -145,8 +145,8 @@
 
             <!-- Testimonial -->
             <li>
-                <a href="{{ route('admin-roles') }}"
-                    class="menu-item flex items-center p-3 rounded-lg text-gray-700 hover:bg-indigo-50 hover:text-[#0C0950] font-medium {{ request()->routeIs('admin-roles', 'admin-roles-update') ? 'active' : '' }}">
+                <a href="{{ route('admin-roles-index') }}"
+                    class="menu-item flex items-center p-3 rounded-lg text-gray-700 hover:bg-indigo-50 hover:text-[#0C0950] font-medium {{ request()->routeIs('admin-roles-index', 'admin-roles-update') ? 'active' : '' }}">
                     <div class="w-6 h-6 mr-3 flex-shrink-0 rounded flex items-center justify-center">
                         <svg class="w-5 h-5 text-gray-700 hover:text-[#0C0950]" fill="none" stroke="currentColor"
                             viewBox="0 0 24 24" stroke-width="2">
@@ -205,17 +205,20 @@
         <!-- Logout Paling Bawah -->
         <div class="flex flex-col mt-8 pt-4">
             <div class="border-t border-gray-200">
-                <button id="logoutBtn"
-                    class="flex items-center p-3 rounded-lg text-red-600 hover:bg-red-50 font-medium w-full">
-                    <div class="w-6 h-6 mr-3 flex-shrink-0">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                            stroke-width="2">
-                            <path stroke-linecap="round" stroke-linejoin="round"
-                                d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-                        </svg>
-                    </div>
-                    <span>Logout</span>
-                </button>
+                <form action="{{ route('logout') }}" method="POST" class="w-full">
+                    @csrf
+                    <button type="submit" id="logoutBtn"
+                        class="flex items-center p-3 rounded-lg text-red-600 hover:bg-red-50 font-medium w-full">
+                        <div class="w-6 h-6 mr-3 flex-shrink-0">
+                            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                stroke-width="2">
+                                <path stroke-linecap="round" stroke-linejoin="round"
+                                    d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                            </svg>
+                        </div>
+                        <span>Logout</span>
+                    </button>
+                </form>
             </div>
         </div>
     </nav>
@@ -279,36 +282,6 @@
         }
     });
 </script>
-{{-- <script>
-    document.querySelectorAll('.language-option').forEach(el => {
-        el.addEventListener('click', async function(e) {
-            e.preventDefault();
-            const locale = this.getAttribute('data-locale');
-
-            // Simpan di localStorage
-            localStorage.setItem('locale', locale);
-
-            // Panggil endpoint untuk set session di backend
-            try {
-                await fetch(`/lang/${locale}`, {
-                    method: 'GET',
-                    credentials: 'same-origin'
-                });
-                location.reload();
-            } catch (error) {
-                console.error('Gagal mengubah bahasa:', error);
-            }
-        });
-    });
-
-    // Opsional: saat page load, cek localStorage dan sync ke session jika berbeda
-    window.addEventListener('load', () => {
-        const storedLocale = localStorage.getItem('locale') || 'id';
-        // Kalau perlu sinkronisasi session, bisa enable fetch ini:
-        // fetch(`/lang/${storedLocale}`, { method: 'GET', credentials: 'same-origin' });
-    });
-</script> --}}
-
 <script>
     // Sidebar functionality
     const sidebar = document.querySelector('.sidebar');
@@ -390,4 +363,3 @@
         }
     });
 </script>
-@vite('resources/js/logout.js')

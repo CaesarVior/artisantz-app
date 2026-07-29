@@ -18,15 +18,20 @@ class AuthController extends Controller
         return view('auth.login');
     }
 
-    public function login(LoginRequest $request): RedirectResponse
+    public function store(LoginRequest $request)
     {
-        if ($this->authHelper->attemptLogin($request->validated())) {
+        $credentials = $request->only('email', 'password');
+
+        if (Auth::attempt($credentials, $request->boolean('remember'))) {
             $request->session()->regenerate();
 
-            return redirect()->route('events.index')->with('success', 'Login berhasil.');
+            return redirect()->intended(route('admin-events'))
+                ->with('success', 'Selamat datang kembali!');
         }
 
-        return back()->withErrors(['email' => 'Kredensial tidak cocok.']);
+        return back()->withErrors([
+            'email' => 'Alamat email atau kata sandi yang Anda masukkan salah.',
+        ])->onlyInput('email');
     }
 
     public function showRegisterForm(): View
@@ -41,13 +46,13 @@ class AuthController extends Controller
     {
         $this->authHelper->registerUser($request->validated());
 
-        return redirect()->route('auth.login')->with('success', 'Registrasi berhasil. Silakan login.');
+        return redirect()->route('login')->with('success', 'Registrasi berhasil. Silakan login.');
     }
 
     public function logout(): RedirectResponse
     {
         $this->authHelper->logoutUser();
 
-        return redirect()->route('auth.login');
+        return redirect()->route('login');
     }
 }

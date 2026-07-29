@@ -28,6 +28,8 @@ class UserSeeder extends Seeder
             [
                 'role_id' => $adminRoleId,
                 'name' => 'John Doe Admin',
+                'email' => 'indrabekti@gmail.com',
+                'password' => 'indrabekti',
                 'phone_number' => '081234567890',
                 'created_at' => now(),
                 'updated_at' => now(),
@@ -35,6 +37,8 @@ class UserSeeder extends Seeder
             [
                 'role_id' => $userRoleId,
                 'name' => 'Jane Doe Member',
+                'email' => 'indrabekti@gmail.com',
+                'password' => 'indrabekti',
                 'phone_number' => '089876543210',
                 'created_at' => now(),
                 'updated_at' => now(),

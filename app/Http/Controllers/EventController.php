@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Helpers\EventHelper;
 use App\Http\Requests\EventRequest;
 use App\Http\Resources\EventResource;
-use App\Models\Event;
+use App\Models\EventModel;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
@@ -14,67 +14,98 @@ class EventController extends Controller
 {
     public function __construct(private EventHelper $eventHelper) {}
 
+    public function publicIndex(): View
+    {
+        $events = EventResource::collection(
+            $this->eventHelper->getUpcomingActiveEvents()
+        );
+
+        return view('event', compact('events'));
+    }
+
     public function index(): View
     {
-        $eventsPaginator = $this->eventHelper->getAllPaginated();
+        $events = EventResource::collection(
+            $this->eventHelper->getAllPaginated()
+        );
 
-        // Memformat data menggunakan Resource sebelum dilempar ke View
-        $events = EventResource::collection($eventsPaginator);
-
-        return view('event', [
+        return view('admin.pages.events.index', [
             'events' => $events,
-            'paginator' => $eventsPaginator,
         ]);
     }
 
     public function create(): View
     {
-        return view('events.create');
+        return view('admin.pages.events.create');
     }
 
     public function store(EventRequest $request): RedirectResponse
     {
         $validatedData = $request->validated();
 
-        if ($request->hasFile('photo')) {
-            $validatedData['photo'] = $this->eventHelper->uploadPhoto($request->file('photo'));
+        if ($request->hasFile('photos')) {
+            $validatedData['photo'] = $this->eventHelper->uploadPhotos(
+                $request->file('photos'),
+                $validatedData['name']
+            );
+
+            unset($validatedData['photos']);
         }
 
-        $this->eventHelper->createEvent($validatedData, Auth::id());
+        $userId = Auth::id() ?? 1;
+        $this->eventHelper->createEvent($validatedData, $userId);
 
-        return redirect()->route('events.index')->with('success', 'Event berhasil dibuat.');
+        return redirect()->route('admin-events')->with('success', 'Event berhasil dibuat.');
     }
 
-    public function show(Event $event): View
+    public function show(EventModel $event): View
     {
         $formattedEvent = (new EventResource($event))->resolve();
 
-        return view('events.show', compact('formattedEvent'));
+        return view('admin.pages.events.index', compact('formattedEvent'));
     }
 
-    public function edit(Event $event): View
+    public function edit(int $id): View
     {
-        return view('events.edit', compact('event'));
+        $event = $this->eventHelper->getEventById($id);
+
+        return view('admin.pages.events.update', compact('event'));
     }
 
-    public function update(EventRequest $request, Event $event): RedirectResponse
+    public function update(EventRequest $request, int $id): RedirectResponse
     {
+        $event = $this->eventHelper->getEventById($id);
         $validatedData = $request->validated();
 
-        if ($request->hasFile('photo')) {
-            $this->eventHelper->deletePhoto($event->photo);
-            $validatedData['photo'] = $this->eventHelper->uploadPhoto($request->file('photo'));
+        if ($request->hasFile('photos')) {
+            $validatedData['photo'] = $this->eventHelper->uploadPhotos(
+                $request->file('photos'),
+                $validatedData['name'] ?? $event->name
+            );
+
+            unset($validatedData['photos']);
         }
 
         $this->eventHelper->updateEvent($event, $validatedData);
 
-        return redirect()->route('events.index')->with('success', 'Event berhasil diperbarui.');
+        return redirect()->route('admin-events')->with('success', 'Event berhasil diperbarui.');
     }
 
-    public function destroy(Event $event): RedirectResponse
+    public function destroy(int $id): RedirectResponse
     {
-        $this->eventHelper->deleteEvent($event);
+        $event = $this->eventHelper->getEventById($id);
 
-        return redirect()->route('events.index')->with('success', 'Event berhasil dihapus.');
+        if (! empty($event->photo)) {
+            $photos = is_string($event->photo) ? json_decode($event->photo, true) : $event->photo;
+
+            if (is_array($photos)) {
+                $this->eventHelper->deletePhotos($photos);
+            }
+        }
+
+        // Hapus record di database
+        $this->eventHelper->deleteEvent($id);
+
+        return redirect()->route('admin-events')->with('success', 'Event berhasil dihapus!');
     }
 }

@@ -3,144 +3,141 @@
 @section('title', 'Event - Artisantz Coffee & Eatery')
 
 @section('content')
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <x-navbar />
 
     <section class="event-section">
 
         <div class="event-container">
-
-            <!-- HERO IMAGE -->
-            <div class="event-hero">
-                <img src="{{ asset('img/event-banner.webp') }}" alt="Parade Hujan">
-            </div>
-
-            <!-- EVENT CARD -->
-            <div class="event-card">
-
-                <!-- LEFT -->
-                <div class="event-left">
-
-                    <h2 class="event-title">
-                        Konser Teruntuk Kamu
-                    </h2>
-
-                    <div class="event-info">
-                        <span>📅</span>
-                        <div>
-                            <strong>Jumat, 31 Juli 2026</strong><br>
-                            19.00 WIB
-                        </div>
-                    </div>
-
-                    <div class="event-info">
-                        <span>📍</span>
-                        <div>
-                            Artisantz Coffee & Eatery
-                        </div>
-                    </div>
-
-                    <div class="event-info">
-                        <span>🎤</span>
-                        <div>
-                            Parade Hujan — Tour Album Punar
-                        </div>
-                    </div>
-
-                </div>
-
-                <!-- RIGHT -->
-                <div class="event-right">
-
-                    <h3>Reservasi Sekarang</h3>
-
-                    <p>
-                        Booking meja terlebih dahulu agar tidak kehabisan tempat.
-                    </p>
-
-                    <a href="https://wa.me/6285645160494" target="_blank" class="reserve-btn">
-
-                        Reservasi via WhatsApp
-
-                    </a>
-
-                </div>
-
-            </div>
-
-            <!-- CONTENT -->
-
-            <div class="event-bottom-card">
-
-                <!-- DESCRIPTION -->
-
-                <div class="event-description">
-
-                    <h2>Event Details</h2>
-
-                    <p>
-                        Malam untuk berbagi cerita, emosi serta kehangatan yang akan
-                        disajikan dengan konsep intimate concert bersama Parade Hujan.
-                        Nikmati pengalaman menikmati kopi sambil mendengarkan musik
-                        secara langsung di Artisantz Coffee & Eatery.
-                    </p>
-
-                    <p>
-                        Jangan lewatkan kesempatan untuk menjadi bagian dari malam
-                        spesial ini bersama teman, pasangan maupun keluarga.
-                    </p>
-
-                </div>
-
-                <!-- ORGANIZER -->
-
-                <div class="organizer-card">
-
-                    <h2>Organizer</h2>
-
-                    <p>
-                        <strong>Artisantz Coffee & Eatery</strong>
-                    </p>
-
-                    <p>📞 0856-4516-0494</p>
-                    <p>
-                        <a href="https://maps.google.com/?q=Artisantz+Coffee+%26+Eatery+Malang" target="_blank">
-                            📍 Artisantz Coffee & Eatery
-                        </a>
-                    </p>
-
-                    <a href="https://www.instagram.com/fbn_artisantz" target="_blank">
-                        📷 @fbn_artisantz
-                    </a>
-
-                </div>
-
-            </div>
-
-            <!-- GALLERY -->
-
+            <h2>Gallery Event</h2>
+            <!-- GALLERY EVENT -->
             <div class="event-gallery">
+                <!-- SWIPER CAROUSEL CONTAINER -->
+                <div class="swiper eventGallerySwiper">
+                    <div class="swiper-wrapper">
+                        @if ($events->isNotEmpty())
+                            {{-- Tampilkan foto-foto event jika event ada --}}
+                            @foreach ($events as $event)
+                                @php
+                                    $photos = is_string($event->photo)
+                                        ? json_decode($event->photo, true)
+                                        : $event->photo;
+                                @endphp
 
-                <h2>Gallery Event</h2>
+                                @if (!empty($photos) && is_array($photos))
+                                    @foreach (array_values($photos) as $index => $img)
+                                        <div class="swiper-slide">
+                                            <div class="event-thumb">
+                                                <img src="{{ asset($img) }}"
+                                                    alt="{{ $event->name }} - Foto {{ $index + 1 }}">
+                                            </div>
+                                        </div>
+                                    @endforeach
+                                @endif
+                            @endforeach
+                        @else
+                            {{-- Tampilkan COMING SOON jika tidak ada event --}}
+                            <div class="swiper-slide">
+                                <div class="event-thumb coming-soon">
+                                    <span>COMING SOON</span>
+                                </div>
+                            </div>
+                        @endif
+                    </div>
 
-                <div class="event-gallery-grid">
-                    @foreach ($events as $event)
-                        @php dd($event); @endphp;
-                        <h2>{{ $event->name }}</h2>
-                        <p>Dibuat oleh: {{ $event->user->name ?? 'Anonim' }}</p>
+                    <!-- Pagination & Navigasi -->
+                    <div class="swiper-pagination"></div>
+                    <div class="swiper-button-next"></div>
+                    <div class="swiper-button-prev"></div>
+                </div>
+            </div>
+            {{-- EVENT CARDS (Dinamis dari Database) --}}
+            @forelse ($events as $event)
+                <div class="event-card mb-8">
 
-                        <img src="{{ asset('img/event/' . $event->image) }}" alt="{{ $event->name }}">
-                    @endforeach
+                    <!-- LEFT -->
+                    <div class="event-left">
 
-                    <div class="event-thumb coming-soon">
-                        <span>COMING SOON</span>
+                        <h2 class="event-title">
+                            {{ $event->name }}
+                        </h2>
+                        <div class="ql-editor" style="margin-bottom: 25px">
+                            {!! $event->description !!}
+                        </div>
+
+                        @if (!empty($event->theme))
+                            <p class="text-sm text-gray-500 mb-2">Tema: {{ $event->theme }}</p>
+                        @endif
+
+                        <div class="event-info">
+                            <span>📅</span>
+                            <div>
+                                <strong>{{ \Carbon\Carbon::parse($event->event_date)->translatedFormat('l, d F Y') }}</strong>
+                                {{ \Carbon\Carbon::parse($event->event_date)->translatedFormat('H:i') }} WIB
+                            </div>
+                        </div>
+
+                        <div class="event-info">
+                            <span>📍</span>
+                            <div>
+                                Artisantz Coffee & Eatery
+                            </div>
+                        </div>
+
+                        <div class="event-info">
+                            <span>👤</span>
+                            <div>
+                                Dibuat oleh: {{ $event->user->name ?? 'Admin' }}
+                            </div>
+                        </div>
+
+                    </div>
+
+                    <!-- RIGHT -->
+                    <div class="event-right">
+                        <h3>Reservasi Sekarang</h3>
+                        <p>
+                            Booking meja terlebih dahulu agar tidak kehabisan tempat.
+                        </p>
+                        <a href="https://wa.me/6285645160494?text=Halo%20Artisantz,%20saya%20ingin%20reservasi%20untuk%20event%20{{ urlencode($event->name) }}"
+                            target="_blank" class="reserve-btn">
+                            Reservasi via WhatsApp
+                        </a>
                     </div>
                 </div>
-
-            </div>
-
+            @empty
+                <div class="p-8 text-center bg-gray-50 rounded-xl mb-8">
+                    <p class="text-gray-500">Belum ada event yang dijadwalkan dalam waktu dekat.</p>
+                </div>
+            @endforelse
         </div>
-
     </section>
+    <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const swiper = new Swiper('.eventGallerySwiper', {
+                slidesPerView: 1,
+                spaceBetween: 0,
+                loop: true,
+                centeredSlides: true,
 
+                autoplay: {
+                    delay: 4500,
+                    disableOnInteraction: false,
+                },
+
+                speed: 600,
+
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable: true,
+                },
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+            });
+        });
+    </script>
 @endsection

@@ -51,7 +51,7 @@
 </head>
 
 <body>
-
+    @include('components.alert')
     <div id="loadingOverlay" class="fixed inset-0 bg-white flex items-center justify-center z-[9999]">
         <div class="relative w-32 h-32 flex items-center justify-center">
             <div
@@ -114,8 +114,6 @@
     <!-- SweetAlert JS -->
     <script src="{{ asset('js/cdn/sweetalert2@11.js') }}"></script>
 
-    <!-- Toastr Handler JS (Enhanced) -->
-    <script src="{{ asset('js/cdn/toastr-handler.js') }}"></script>
 
     <!-- Vite app.js -->
     @vite(['resources/js/app.js'])

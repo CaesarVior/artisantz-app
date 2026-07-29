@@ -27,5 +27,8 @@ class AuthHelper
     public function logoutUser(): void
     {
         Auth::logout();
+
+        request()->session()->invalidate();
+        request()->session()->regenerateToken();
     }
 }

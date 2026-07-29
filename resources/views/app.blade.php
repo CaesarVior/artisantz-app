@@ -39,17 +39,17 @@
             <p class="footer-loader-text">Tunggu Sebentar</p>
         </div>
     </div>
- @if (!Request::is('login'))
-    <x-navbar />
-@endif
+    @if (!Request::is('login'))
+        <x-navbar />
+    @endif
 
-<main>
-    @yield('content')
-</main>
+    <main>
+        @yield('content')
+    </main>
 
-@if (!Request::is('login'))
-    <x-footer />
-@endif
+    @if (!Request::is('login'))
+        <x-footer />
+    @endif
 
     <script>
         window.addEventListener('scroll', function() {
@@ -70,7 +70,7 @@
             }
         });
     </script>
-    
+
 </body>
 
 </html>
