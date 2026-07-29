@@ -174,5 +174,4 @@
             </nav>
         </div>
     </div>
-    @vite('resources/js/admin/pages/blog/index.js')
 @endsection
