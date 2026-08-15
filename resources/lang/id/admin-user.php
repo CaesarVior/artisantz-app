@@ -13,8 +13,10 @@ return [
     'index-add-user' => 'Tambah Berita',
 
     'index-table-number' => 'Nomor',
-    'index-table-name' => 'Nama',
-    'index-table-email' => 'email',
+    'index-table-title' => 'Nama',
+    'index-table-image' => 'Email',
+    'index-table-content' => 'Nomor Telepon',
+    'index-table-status' => 'Status',
     'index-table-action' => 'Aksi',
     'index-table-phone-number' => 'Nomor Telepon',
 

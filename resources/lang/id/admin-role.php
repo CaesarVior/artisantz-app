@@ -14,11 +14,6 @@ return [
 
     'index-table-number' => 'Nomor',
     'index-table-title' => 'Nama',
-    'index-table-image' => 'Foto',
-    'index-table-content' => 'Tema',
-    'index-table-created-at' => 'Tanggal Dibuat',
-    'index-table-status' => 'Status',
-    'index-table-action' => 'Aksi',
 
     'index-paginate-previous' => 'Sebelumnya',
     'index-paginate-next' => 'Selanjutnya',
