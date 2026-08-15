@@ -1,0 +1,671 @@
+/* =========================================================
+   ARTISANTZ - ABOUT PAGE
+========================================================= */
+
+.about-page {
+    width: 100%;
+
+    background:
+        radial-gradient(
+            circle at 10% 10%,
+            rgba(184, 138, 74, 0.10),
+            transparent 30%
+        ),
+        #f4f0e8;
+
+    color: #3b2920;
+
+    padding: 150px 0 100px;
+}
+
+
+/* =========================================================
+   CONTAINER
+========================================================= */
+
+.about-container {
+    width: 85%;
+    max-width: 1200px;
+
+    margin: 0 auto;
+}
+
+
+/* =========================================================
+   HEADER
+========================================================= */
+
+.about-header {
+    display: grid;
+
+    grid-template-columns: 1fr 0.9fr;
+
+    align-items: center;
+
+    gap: 70px;
+
+    min-height: 520px;
+}
+
+
+/* =========================================================
+   ABOUT TEXT
+========================================================= */
+
+.about-text {
+    position: relative;
+
+    padding: 35px 0;
+}
+
+
+/* Decorative line */
+
+.about-text::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 0;
+
+    width: 55px;
+    height: 4px;
+
+    border-radius: 10px;
+
+    background: #b88a4a;
+}
+
+
+/* Heading */
+
+.about-text h1 {
+    margin: 25px 0 25px;
+
+    color: #3b2920;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: clamp(42px, 5vw, 72px);
+
+    font-weight: 700;
+
+    line-height: 1;
+
+    letter-spacing: -2px;
+}
+
+
+/* Paragraph */
+
+.about-text p {
+    max-width: 620px;
+
+    margin: 0 0 20px;
+
+    color: #706760;
+
+    font-size: 15px;
+
+    line-height: 1.9;
+}
+
+
+/* =========================================================
+   IMAGE
+========================================================= */
+
+.about-image {
+    position: relative;
+
+    height: 500px;
+
+    overflow: hidden;
+
+    border-radius: 35px;
+
+    background: #ddd;
+
+    box-shadow:
+        0 25px 60px rgba(59, 41, 32, 0.15);
+}
+
+
+/* Image */
+
+.about-image img {
+    width: 100%;
+    height: 100%;
+
+    display: block;
+
+    object-fit: cover;
+
+    transition:
+        transform 0.6s ease;
+}
+
+
+/* Image hover */
+
+.about-image:hover img {
+    transform: scale(1.04);
+}
+
+
+/* Decorative frame */
+
+.about-image::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 15px;
+
+    border: 1px solid rgba(255, 255, 255, 0.45);
+
+    border-radius: 25px;
+
+    z-index: 2;
+
+    pointer-events: none;
+}
+
+
+/* Gold decoration */
+
+.about-image::after {
+    content: "";
+
+    position: absolute;
+
+    width: 100px;
+    height: 100px;
+
+    right: -30px;
+    bottom: -30px;
+
+    border-radius: 50%;
+
+    background: rgba(184, 138, 74, 0.65);
+
+    z-index: 3;
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   ABOUT INFO
+========================================================= */
+
+.about-info {
+    margin-top: 100px;
+
+    border-top: 1px solid rgba(59, 41, 32, 0.15);
+}
+
+
+/* =========================================================
+   INFO ROW
+========================================================= */
+
+.info-row {
+    display: grid;
+
+    grid-template-columns: 0.8fr 1.5fr;
+
+    gap: 80px;
+
+    padding: 45px 0;
+
+    border-bottom: 1px solid rgba(59, 41, 32, 0.15);
+}
+
+
+/* Title */
+
+.info-title {
+    position: relative;
+
+    color: #3b2920;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 25px;
+
+    font-weight: 600;
+}
+
+
+/* Gold number / line */
+
+.info-title::before {
+    content: "";
+
+    display: inline-block;
+
+    width: 28px;
+    height: 3px;
+
+    margin-right: 12px;
+
+    vertical-align: middle;
+
+    border-radius: 10px;
+
+    background: #b88a4a;
+}
+
+
+/* Content */
+
+.info-content {
+    max-width: 650px;
+
+    color: #706760;
+
+    font-size: 15px;
+
+    line-height: 1.9;
+}
+
+
+/* =========================================================
+   CONTACT SECTION
+========================================================= */
+
+.contact-section {
+    position: relative;
+
+    display: grid;
+
+    grid-template-columns: 1.3fr 0.7fr;
+
+    align-items: center;
+
+    gap: 50px;
+
+    margin-top: 100px;
+
+    padding: 55px 60px;
+
+    overflow: hidden;
+
+    border-radius: 30px;
+
+    background: #3b2920;
+
+    box-shadow:
+        0 20px 50px rgba(59, 41, 32, 0.15);
+}
+
+
+/* Decorative circle */
+
+.contact-section::before {
+    content: "";
+
+    position: absolute;
+
+    width: 280px;
+    height: 280px;
+
+    right: -100px;
+    top: -120px;
+
+    border-radius: 50%;
+
+    background: rgba(184, 138, 74, 0.25);
+}
+
+
+/* Decorative circle */
+
+.contact-section::after {
+    content: "";
+
+    position: absolute;
+
+    width: 150px;
+    height: 150px;
+
+    left: -70px;
+    bottom: -80px;
+
+    border-radius: 50%;
+
+    background: rgba(255, 255, 255, 0.05);
+}
+
+
+/* =========================================================
+   CONTACT LEFT
+========================================================= */
+
+.contact-left {
+    position: relative;
+
+    z-index: 2;
+}
+
+
+.contact-left h3 {
+    max-width: 600px;
+
+    margin: 0;
+
+    color: #ffffff;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: clamp(25px, 3vw, 40px);
+
+    font-weight: 600;
+
+    line-height: 1.3;
+}
+
+
+/* =========================================================
+   CONTACT RIGHT
+========================================================= */
+
+.contact-right {
+    position: relative;
+
+    z-index: 2;
+
+    padding-left: 40px;
+
+    border-left: 1px solid rgba(255, 255, 255, 0.25);
+}
+
+
+.contact-right h3 {
+    margin: 0 0 8px;
+
+    color: #d6b47a;
+
+    font-size: 18px;
+
+    font-weight: 600;
+}
+
+
+.contact-right p {
+    margin: 0;
+
+    color: rgba(255, 255, 255, 0.65);
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .about-page {
+        padding-top: 130px;
+    }
+
+
+    .about-container {
+        width: 90%;
+    }
+
+
+    .about-header {
+        grid-template-columns: 1fr 1fr;
+
+        gap: 35px;
+
+        min-height: 450px;
+    }
+
+
+    .about-text h1 {
+        font-size: 48px;
+    }
+
+
+    .about-text p {
+        font-size: 14px;
+    }
+
+
+    .about-image {
+        height: 430px;
+    }
+
+
+    .info-row {
+        gap: 40px;
+    }
+
+
+    .contact-section {
+        padding: 45px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .about-page {
+        padding-top: 115px;
+
+        padding-bottom: 70px;
+    }
+
+
+    .about-container {
+        width: 90%;
+    }
+
+
+    /* Header menjadi vertical */
+
+    .about-header {
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: stretch;
+
+        gap: 30px;
+
+        min-height: auto;
+    }
+
+
+    /* Text */
+
+    .about-text {
+        padding-top: 25px;
+    }
+
+
+    .about-text h1 {
+        margin-top: 20px;
+
+        font-size: 43px;
+
+        letter-spacing: -1.5px;
+    }
+
+
+    .about-text p {
+        font-size: 13px;
+
+        line-height: 1.8;
+    }
+
+
+    /* Image */
+
+    .about-image {
+        width: 100%;
+
+        height: 350px;
+
+        border-radius: 25px;
+    }
+
+
+    /* Info */
+
+    .about-info {
+        margin-top: 70px;
+    }
+
+
+    .info-row {
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 15px;
+
+        padding: 30px 0;
+    }
+
+
+    .info-title {
+        font-size: 21px;
+    }
+
+
+    .info-content {
+        font-size: 13px;
+
+        line-height: 1.8;
+    }
+
+
+    /* Contact */
+
+    .contact-section {
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        gap: 30px;
+
+        margin-top: 70px;
+
+        padding: 35px 25px;
+
+        border-radius: 24px;
+    }
+
+
+    .contact-left h3 {
+        font-size: 27px;
+    }
+
+
+    .contact-right {
+        width: 100%;
+
+        padding-left: 0;
+
+        padding-top: 20px;
+
+        border-left: none;
+
+        border-top: 1px solid rgba(255, 255, 255, 0.25);
+    }
+}
+
+
+/* =========================================================
+   SMALL PHONE
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .about-page {
+        padding-top: 100px;
+    }
+
+
+    .about-container {
+        width: 92%;
+    }
+
+
+    .about-text h1 {
+        font-size: 36px;
+
+        letter-spacing: -1px;
+    }
+
+
+    .about-text p {
+        font-size: 12px;
+    }
+
+
+    .about-image {
+        height: 270px;
+
+        border-radius: 20px;
+    }
+
+
+    .about-image::before {
+        inset: 10px;
+
+        border-radius: 15px;
+    }
+
+
+    .about-info {
+        margin-top: 55px;
+    }
+
+
+    .info-title {
+        font-size: 19px;
+    }
+
+
+    .info-content {
+        font-size: 12px;
+    }
+
+
+    .contact-section {
+        margin-top: 55px;
+
+        padding: 30px 20px;
+
+        border-radius: 20px;
+    }
+
+
+    .contact-left h3 {
+        font-size: 23px;
+    }
+
+
+    .contact-right h3 {
+        font-size: 15px;
+    }
+
+
+    .contact-right p {
+        font-size: 12px;
+    }
+}

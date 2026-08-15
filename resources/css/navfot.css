@@ -29,47 +29,215 @@ body {
     font-family: "Poppins", sans-serif;
 }
 /* ================= NAVBAR ================= */
+
 .navbar {
-  width: 85%;
-  margin: 30px auto;
-  background: #ffffff;
-  border-radius: 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 18px 40px;
-  position: fixed;
-  top: 0;
-  left: 50%;
-  transform: translateX(-50%);
-  z-index: 1000;
+    width: 85%;
+    max-width: 1200px;
+
+    min-height: 64px;
+
+    margin: 20px auto;
+
+    padding: 8px 12px 8px 22px;
+
+    box-sizing: border-box;
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    position: fixed;
+
+    top: 20px;
+    left: 50%;
+
+    transform: translateX(-50%);
+
+    z-index: 1000;
+
+    background: rgba(250, 248, 244, 0.95);
+
+    border: 1px solid rgba(59, 41, 32, 0.08);
+
+    border-radius: 22px;
+
+    box-shadow:
+        0 8px 30px rgba(59, 41, 32, 0.08);
+
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+
+    transition:
+        top 0.3s ease,
+        background 0.3s ease,
+        box-shadow 0.3s ease;
 }
 
 .navbar-logo img {
-    width: 100px;
-    height: auto;
+    display: block;
+
+    width: 115px;
+    height: 48px;
+
+    object-fit: contain;
+
+    transition:
+        transform 0.3s ease,
+    
 }
+.navbar-logo img:hover {
+    transform: scale(1.03);
+
+    opacity: 0.85;
+}
+
+/* ================= MENU ================= */
 
 .navbar-menu {
-  display: flex;
-  list-style: none;
-  gap: 40px;
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    list-style: none;
+
+    gap: 5px;
+
+    margin: 0;
+    padding: 0;
 }
+
+
+.navbar-menu li {
+    margin: 0;
+    padding: 0;
+}
+
 
 .navbar-menu a {
-  text-decoration: none;
-  color: #222;
-  font-weight: 500;
+    position: relative;
+
+    display: flex;
+    align-items: center;
+
+    padding: 10px 15px;
+
+    color: #514841;
+
+    text-decoration: none;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 12px;
+
+    font-weight: 500;
+
+    border-radius: 12px;
+
+    transition:
+        color 0.25s ease,
+        background 0.25s ease;
 }
 
-.navbar-contact a {
-  text-decoration: none;
-  background: #000000;
-  color: #ffffff;
-  padding: 12px 28px;
-  border-radius: 999px;
-  font-weight: 600;
+
+/* Hover */
+
+.navbar-menu a:hover {
+    color: #2f2722;
+
+    background: rgba(184, 138, 74, 0.08);
 }
+
+
+/* Active */
+
+.navbar-menu a.active {
+    color: #2f2722;
+
+    font-weight: 600;
+}
+
+
+/* Active indicator */
+
+.navbar-menu a.active::after {
+    content: "";
+
+    position: absolute;
+
+    left: 50%;
+    bottom: 4px;
+
+    width: 16px;
+    height: 2px;
+
+    transform: translateX(-50%);
+
+    border-radius: 10px;
+
+    background: #b88a4a;
+}
+
+
+/* ================= CONTACT ================= */
+
+.navbar-contact {
+    display: flex;
+
+    align-items: center;
+}
+
+
+.navbar-contact a {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    min-width: 82px;
+
+    padding: 10px 16px;
+
+    border-radius: 13px;
+
+    background: #3b2920;
+
+    color: #f7f3ed;
+
+    text-decoration: none;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 12px;
+
+    font-weight: 500;
+
+    transition:
+        background 0.25s ease,
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+.navbar-contact a:hover {
+    background: #b88a4a;
+
+    color: #ffffff;
+
+    transform: translateY(-1px);
+
+    box-shadow:
+        0 7px 18px rgba(59, 41, 32, 0.15);
+}
+
+
+.navbar-contact a.active {
+    background: #b88a4a;
+
+    color: #ffffff;
+}weight: 600;
+
 
 /* ========================================= HERO ========================================= */
 .hero {
@@ -118,11 +286,11 @@ body {
 .hero-content {
     position: relative;
     z-index: 2;
-
+    padding: 150px 0 80px;
     width: 85%;
     max-width: 1300px;
 
-    margin: 0 auto;
+    margin: 0px auto;
 
     display: grid;
     grid-template-columns: 1fr 1.15fr 1fr;
@@ -839,7 +1007,706 @@ body {
 
     color: var(--brown);
 }
+/* =========================================================
+   ARTISANTZ GALLERY
+   EDITORIAL PREMIUM LAYOUT
+========================================================= */
 
+.gallery-section {
+    width: 100%;
+    min-height: 100vh;
+
+    padding: 155px 0 110px;
+
+    background: #f7f5f1;
+
+    color: #302923;
+}
+
+
+/* =========================================================
+   CONTAINER
+========================================================= */
+
+.gallery-container {
+    width: 85%;
+    max-width: 1200px;
+
+    margin: 0 auto;
+}
+
+
+/* =========================================================
+   CATEGORY AREA
+========================================================= */
+
+.gallery-category-scroll-container {
+    width: 100%;
+
+    margin-bottom: 50px;
+
+    overflow-x: auto;
+
+    scrollbar-width: none;
+}
+
+.gallery-category-scroll-container::-webkit-scrollbar {
+    display: none;
+}
+
+
+.gallery-category-tabs {
+    display: flex;
+    padding-top: 10px;
+    align-items: center;
+
+    justify-content: flex-start;
+
+    gap: 12px;
+
+    min-width: max-content;
+}
+
+
+.gallery-category-tab {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 120px;
+    height: 40px;
+
+    padding: 14px 24px;
+
+    border: 1px solid rgba(59, 41, 32, 0.12);
+
+    border-radius: 999px;
+
+    background: rgba(255, 255, 255, 0.7);
+
+    color: #5f554e;
+
+    text-decoration: none;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 13px;
+
+    font-weight: 500;
+
+    white-space: nowrap;
+
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        border-color 0.25s ease,
+        transform 0.25s ease,
+        box-shadow 0.25s ease;
+}
+
+
+.gallery-category-tab:hover {
+    background: #ffffff;
+
+    color: #3b2920;
+
+    border-color: rgba(184, 138, 74, 0.4);
+
+    transform: translateY(-2px);
+
+    box-shadow:
+        0 6px 16px rgba(59, 41, 32, 0.08);
+}
+
+
+.gallery-category-tab.active {
+    background: #3b2920;
+
+    border-color: #3b2920;
+
+    color: #f7f3ed;
+
+    box-shadow:
+        0 7px 18px rgba(59, 41, 32, 0.13);
+}
+
+
+/* =========================================================
+   CATEGORY BUTTON
+========================================================= */
+
+.gallery-category-tab {
+    padding: 9px 17px;
+
+    border: 1px solid rgba(59, 41, 32, 0.12);
+
+    border-radius: 999px;
+
+    background: transparent;
+
+    color: #716861;
+
+    text-decoration: none;
+
+    font-family: "Poppins", sans-serif;
+
+    font-weight: 500;
+
+    transition:
+        background 0.25s ease,
+        color 0.25s ease,
+        border-color 0.25s ease,
+        transform 0.25s ease;
+}
+
+
+.gallery-category-tab:hover {
+    background: #ffffff;
+
+    color: #3b2920;
+
+    border-color: rgba(184, 138, 74, 0.4);
+
+    transform: translateY(-2px);
+}
+
+
+.gallery-category-tab.active {
+    background: #3b2920;
+
+    border-color: #3b2920;
+
+    color: #f7f3ed;
+}
+
+
+/* =========================================================
+   CATEGORY HEADING
+========================================================= */
+
+.gallery-category-heading {
+    position: relative;
+
+    margin: 0 0 40px;
+
+    padding-left: 20px;
+
+    color: #302923;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 34px;
+
+    font-weight: 600;
+
+    letter-spacing: -1px;
+}
+
+
+/* Gold vertical line */
+
+.gallery-category-heading::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 5px;
+
+    width: 3px;
+    height: 34px;
+
+    border-radius: 10px;
+
+    background: #b88a4a;
+}
+
+
+/* =========================================================
+   GALLERY GRID
+========================================================= */
+
+.gallery-grid {
+    display: grid;
+
+    grid-template-columns: repeat(4, 1fr);
+
+    grid-auto-rows: 240px;
+
+    gap: 18px;
+}
+
+
+/* =========================================================
+   GALLERY ITEM
+========================================================= */
+
+.gallery-item {
+    position: relative;
+
+    min-width: 0;
+
+    overflow: hidden;
+
+    border-radius: 18px;
+
+    background: #e8e3dc;
+
+    box-shadow:
+        0 8px 25px rgba(59, 41, 32, 0.06);
+
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease;
+}
+
+
+.gallery-item:hover {
+    transform: translateY(-5px);
+
+    box-shadow:
+        0 15px 35px rgba(59, 41, 32, 0.12);
+}
+
+
+/* =========================================================
+   VARIATION CARD
+========================================================= */
+
+/*
+   Karena HTML menggunakan .gallery-item yang sama,
+   kita manfaatkan nth-child untuk membuat layout
+   editorial tanpa mengubah Blade.
+*/
+
+
+.gallery-item:nth-child(1) {
+    grid-column: span 2;
+
+    grid-row: span 2;
+}
+
+
+.gallery-item:nth-child(2) {
+    grid-column: span 1;
+
+    grid-row: span 1;
+}
+
+
+.gallery-item:nth-child(3) {
+    grid-column: span 1;
+
+    grid-row: span 2;
+}
+
+
+.gallery-item:nth-child(4) {
+    grid-column: span 1;
+
+    grid-row: span 1;
+}
+
+
+.gallery-item:nth-child(5) {
+    grid-column: span 1;
+
+    grid-row: span 1;
+}
+
+
+.gallery-item:nth-child(6) {
+    grid-column: span 2;
+
+    grid-row: span 1;
+}
+
+
+.gallery-item:nth-child(7) {
+    grid-column: span 1;
+
+    grid-row: span 2;
+}
+
+
+.gallery-item:nth-child(8) {
+    grid-column: span 1;
+
+    grid-row: span 1;
+}
+
+
+/* =========================================================
+   IMAGE BOX
+========================================================= */
+
+.gallery-image-box {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+
+    background: #e8e3dc;
+}
+
+
+.gallery-image-box img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transition:
+        transform 0.6s cubic-bezier(.2,.7,.2,1),
+        filter 0.5s ease;
+}
+
+
+.gallery-item:hover .gallery-image-box img {
+    transform: scale(1.06);
+
+    filter: brightness(0.88);
+}
+
+
+/* =========================================================
+   DARK OVERLAY
+========================================================= */
+
+.gallery-image-box::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            to top,
+            rgba(35, 25, 20, 0.65),
+            rgba(35, 25, 20, 0.05) 55%,
+            transparent
+        );
+
+    opacity: 0.75;
+
+    transition:
+        opacity 0.4s ease;
+}
+
+
+.gallery-item:hover .gallery-image-box::after {
+    opacity: 0.9;
+}
+
+
+/* =========================================================
+   MENU NAME
+========================================================= */
+
+.gallery-item-title {
+    position: absolute;
+
+    z-index: 2;
+
+    left: 20px;
+    right: 20px;
+    bottom: 17px;
+
+    margin: 0;
+
+    color: #ffffff;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 13px;
+
+    font-weight: 500;
+
+    line-height: 1.4;
+
+    text-align: left;
+
+    text-shadow:
+        0 2px 8px rgba(0, 0, 0, 0.25);
+
+    transition:
+        transform 0.35s ease;
+}
+
+
+.gallery-item:hover .gallery-item-title {
+    transform: translateY(-3px);
+}
+
+
+/* =========================================================
+   EMPTY STATE
+========================================================= */
+
+.gallery-no-menu {
+    grid-column: 1 / -1;
+
+    padding: 80px 20px;
+
+    border: 1px dashed rgba(59, 41, 32, 0.16);
+
+    border-radius: 18px;
+
+    text-align: center;
+
+    background: rgba(255, 255, 255, 0.4);
+}
+
+
+.gallery-no-menu p {
+    margin: 0;
+
+    color: #776e67;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 13px;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .gallery-section {
+        padding-top: 135px;
+    }
+
+
+    .gallery-container {
+        width: 90%;
+    }
+
+
+    .gallery-grid {
+        grid-template-columns: repeat(3, 1fr);
+
+        grid-auto-rows: 210px;
+
+        gap: 14px;
+    }
+
+
+    .gallery-category-heading {
+        font-size: 29px;
+    }
+
+
+    .gallery-item:nth-child(1) {
+        grid-column: span 2;
+
+        grid-row: span 2;
+    }
+
+
+    .gallery-item:nth-child(3) {
+        grid-column: span 1;
+
+        grid-row: span 2;
+    }
+
+
+    .gallery-item:nth-child(6) {
+        grid-column: span 2;
+
+        grid-row: span 1;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .gallery-section {
+        padding-top: 120px;
+
+        padding-bottom: 70px;
+    }
+
+
+    .gallery-container {
+        width: 90%;
+    }
+
+
+    .gallery-category-scroll-container {
+        margin-bottom: 35px;
+    }
+
+
+    .gallery-category-tabs {
+        justify-content: flex-start;
+    }
+
+
+    .gallery-category-tab {
+        padding: 8px 14px;
+
+        font-size: 10px;
+    }
+
+
+    .gallery-category-heading {
+        margin-bottom: 25px;
+
+        padding-left: 15px;
+
+        font-size: 24px;
+
+        letter-spacing: -0.5px;
+    }
+
+
+    .gallery-category-heading::before {
+        top: 4px;
+
+        width: 2px;
+
+        height: 27px;
+    }
+
+
+    .gallery-grid {
+        grid-template-columns: repeat(2, 1fr);
+
+        grid-auto-rows: 210px;
+
+        gap: 12px;
+    }
+
+
+    /*
+       Mobile dibuat lebih sederhana
+    */
+
+    .gallery-item:nth-child(1) {
+        grid-column: span 2;
+
+        grid-row: span 2;
+    }
+
+
+    .gallery-item:nth-child(2) {
+        grid-column: span 1;
+
+        grid-row: span 1;
+    }
+
+
+    .gallery-item:nth-child(3) {
+        grid-column: span 1;
+
+        grid-row: span 1;
+    }
+
+
+    .gallery-item:nth-child(4) {
+        grid-column: span 2;
+
+        grid-row: span 1;
+    }
+
+
+    .gallery-item:nth-child(5) {
+        grid-column: span 1;
+
+        grid-row: span 1;
+    }
+
+
+    .gallery-item:nth-child(6) {
+        grid-column: span 1;
+
+        grid-row: span 1;
+    }
+
+
+    .gallery-item:nth-child(7) {
+        grid-column: span 2;
+
+        grid-row: span 1;
+    }
+
+
+    .gallery-item:nth-child(8) {
+        grid-column: span 1;
+
+        grid-row: span 1;
+    }
+
+
+    .gallery-item {
+        border-radius: 14px;
+    }
+
+
+    .gallery-item-title {
+        left: 13px;
+        right: 13px;
+        bottom: 12px;
+
+        font-size: 10px;
+    }
+}
+
+
+/* =========================================================
+   SMALL PHONE
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .gallery-section {
+        padding-top: 105px;
+    }
+
+
+    .gallery-container {
+        width: 92%;
+    }
+
+
+    .gallery-grid {
+        grid-auto-rows: 175px;
+
+        gap: 9px;
+    }
+
+
+    .gallery-item {
+        border-radius: 11px;
+    }
+
+
+    .gallery-item-title {
+        left: 10px;
+        right: 10px;
+        bottom: 9px;
+
+        font-size: 9px;
+    }
+
+
+    .gallery-category-heading {
+        font-size: 21px;
+    }
+}
 /* =========================================================
    LOCATION / MAP
 ========================================================= */
@@ -985,7 +1852,7 @@ body {
 
     overflow: hidden;
 
-    border-radius: 30px;
+border-radius: 30px;    
 
     background: #ddd;
 
@@ -1022,10 +1889,10 @@ body {
    CONTACT
 ========================================================= */
 
-.contact-section {
+.contact-section-home {
     padding: 140px 0;
 
-    background: var(--white);
+    background: var(--grey);
 }
 
 .contact-wrapper {
@@ -1123,7 +1990,7 @@ body {
 
     font-size: 12px;
 
-    color: var(--brown);
+    color: var(--gold);
 }
 
 
@@ -1309,86 +2176,469 @@ body {
   z-index: 1;
 }
 
-/* ================= FOOTER ================= */
-footer {
-  width: 100%;
-  background: #000000;
-  padding: 60px;
-  margin-top: 200px;
+/* =========================================================
+   ARTISANTZ FOOTER
+========================================================= */
+
+.footer {
+    position: relative;
+
+    width: 100%;
+
+    background: #29221e;
+
+    color: #f5f1eb;
+
+    overflow: hidden;
 }
+
+
+/* =========================================================
+   DECORATIVE BACKGROUND
+========================================================= */
+
+.footer::before {
+    content: "";
+
+    position: absolute;
+
+    width: 420px;
+    height: 420px;
+
+    right: -220px;
+    top: -260px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(184, 138, 74, 0.16);
+
+    pointer-events: none;
+}
+
+
+.footer::after {
+    content: "";
+
+    position: absolute;
+
+    width: 250px;
+    height: 250px;
+
+    left: -150px;
+    bottom: -180px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(255, 255, 255, 0.05);
+
+    pointer-events: none;
+}
+
+
+/* =========================================================
+   FOOTER CONTAINER
+========================================================= */
 
 .footer-container {
-  display: flex;
-  justify-content: center;
-  gap: 15%;
+
+    position: relative;
+
+    z-index: 2;
+
+    width: 85%;
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    padding: 70px 0 60px;
+
+    display: flex;
+
+    align-items: flex-start;
+
+    justify-content: space-between;
+
+    gap: 80px;
 }
+
+
+/* =========================================================
+   FOOTER LEFT
+========================================================= */
 
 .footer-left {
-  width: 220px;
+
+    display: flex;
+
+    align-items: flex-start;
+
+    flex: 1;
 }
+
 
 .footer-image {
-  width: 180px;
-  height: 180px;
-  background: white;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: flex-start;
 }
+
+
+/* Logo */
 
 .footer-image img {
-  width: 120px;
+    background: #fff;
+    border-radius: 16px;
+    justify-content: center;
+    align-items: center;
+    width: 180px;
+    height: 180px;
+    display: flex;
+    position: relative;
+    overflow: hidden;
+    object-fit:contain
 }
 
-.footer-social {
-  margin-top: 15px;
-  display: flex;
-  gap: 15px;
+
+.footer-image img:hover {
+
+    opacity: 1;
+
+    transform: translateY(-2px);
 }
 
-.footer-social a {
-  text-decoration: none;
-  color: white;
-  font-weight: 600;
-}
 
-.footer-brand h2 {
-  color: white;
-  font-size: 48px;
-  font-weight: 400;
-}
+/* =========================================================
+   FOOTER LINKS
+========================================================= */
 
 .footer-links {
-  display: flex;
-  gap: 80px;
+
+    display: flex;
+
+    gap: 100px;
+
+    min-width: 400px;
 }
 
-.footer-links div {
-  display: flex;
-  flex-direction: column;
+
+.footer-group {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: 13px;
 }
 
-.footer-links h4 {
-  color: white;
-  margin-bottom: 15px;
-  letter-spacing: 1px;
+
+/* Heading */
+
+.footer-heading {
+
+    position: relative;
+
+    margin: 0 0 12px;
+
+    color: #d6b47a;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    text-transform: uppercase;
+
+    letter-spacing: 1.8px;
 }
 
-.footer-links a {
-  text-decoration: none;
-  color: #efefef;
-  margin-bottom: 8px;
-  font-size: 14px;
+
+/* Small gold line */
+
+.footer-heading::after {
+
+    content: "";
+
+    display: block;
+
+    width: 25px;
+    height: 2px;
+
+    margin-top: 9px;
+
+    border-radius: 10px;
+
+    background: #b88a4a;
 }
+
+
+/* =========================================================
+   NAVIGATION LINKS
+========================================================= */
+
+.footer-nav-link {
+
+    position: relative;
+
+    width: fit-content;
+
+    color: rgba(245, 241, 235, 0.65);
+
+    text-decoration: none;
+
+    font-size: 13px;
+
+    transition:
+        color 0.25s ease,
+        transform 0.25s ease;
+}
+
+
+.footer-nav-link:hover {
+
+    color: #ffffff;
+
+    transform: translateX(4px);
+}
+
+
+/* =========================================================
+   INSTAGRAM
+========================================================= */
+
+.footer-instagram-link {
+
+    display: inline-flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    width: fit-content;
+
+    color: rgba(245, 241, 235, 0.65);
+
+    text-decoration: none;
+
+    font-size: 13px;
+
+    transition:
+        color 0.25s ease,
+        transform 0.25s ease;
+}
+
+
+.footer-instagram-link:hover {
+
+    color: #ffffff;
+
+    transform: translateX(4px);
+}
+
+
+.footer-instagram-icon {
+
+    color: #d6b47a;
+
+    font-size: 17px;
+
+    transition:
+        color 0.25s ease,
+        transform 0.25s ease;
+}
+
+
+.footer-instagram-link:hover .footer-instagram-icon {
+
+    color: #b88a4a;
+
+    transform: scale(1.08);
+}
+
+
+/* =========================================================
+   FOOTER BOTTOM
+========================================================= */
 
 .footer-bottom {
-  text-align: center;
-  color: white;
-  transform: translateY(27px);
-  margin-top: 20px;
-  font-size: 13px;
+
+    position: relative;
+
+    z-index: 2;
+
+    width: 85%;
+    max-width: 1200px;
+
+    margin: 0 auto;
+
+    padding: 20px 0 25px;
+
+    border-top: 1px solid rgba(255, 255, 255, 0.09);
+
+    color: rgba(245, 241, 235, 0.4);
+
+    text-align: left;
+
+    font-size: 11px;
+
+    letter-spacing: 0.3px;
 }
-/* ================ Contact page ======================= */
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 900px) {
+
+    .footer-container {
+
+        width: 90%;
+
+        gap: 50px;
+    }
+
+
+    .footer-links {
+
+        gap: 60px;
+
+        min-width: auto;
+    }
+
+
+    .footer-image img {
+
+        width: 150px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .footer-container {
+
+        width: 90%;
+
+        flex-direction: column;
+
+        gap: 45px;
+
+        padding: 55px 0 45px;
+    }
+
+
+    .footer-left {
+
+        width: 100%;
+    }
+
+
+    .footer-image img {
+
+        width: 145px;
+    }
+
+
+    .footer-links {
+
+        width: 100%;
+
+        display: grid;
+
+        grid-template-columns: 1fr 1fr;
+
+        gap: 35px;
+    }
+
+
+    .footer-heading {
+
+        font-size: 11px;
+    }
+
+
+    .footer-nav-link,
+    .footer-instagram-link {
+
+        font-size: 12px;
+    }
+
+
+    .footer-bottom {
+
+        width: 90%;
+
+        padding: 18px 0 22px;
+
+        line-height: 1.6;
+    }
+}
+
+
+/* =========================================================
+   SMALL PHONE
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .footer-container {
+
+        width: 92%;
+
+        padding: 45px 0 35px;
+
+        gap: 40px;
+    }
+
+
+    .footer-image img {
+
+        width: 135px;
+    }
+
+
+    .footer-links {
+
+        gap: 25px;
+    }
+
+
+    .footer-heading {
+
+        font-size: 10px;
+
+        letter-spacing: 1.4px;
+    }
+
+
+    .footer-nav-link,
+    .footer-instagram-link {
+
+        font-size: 11px;
+    }
+
+
+    .footer-instagram-icon {
+
+        font-size: 15px;
+    }
+
+
+    .footer-bottom {
+
+        width: 92%;
+
+        font-size: 10px;
+    }
+}
 /* =========================================================
    ARTISANTZ CONTACT PAGE
 ========================================================= */

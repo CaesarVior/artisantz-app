@@ -109,12 +109,12 @@
 
                 </div>
 
-                <a href="https://maps.google.com"
-                   target="_blank"
-                   class="map-btn">
-                    Open Google Maps →
-                </a>
-
+<a href="https://www.google.com/maps/@-7.974982225589408,112.66183381783344,20z"
+   target="_blank"
+   rel="noopener noreferrer"
+   class="map-btn">
+    Open Google Maps →
+</a>
             </div>
 
 
@@ -144,7 +144,7 @@
 
 
 {{-- ================= CONTACT ================= --}}
-<section class="contact-section">
+<section class="contact-section-home">
 
     <div class="container">
 
@@ -175,7 +175,7 @@
 
                         <div>
                             <small>Email</small>
-                            <p>hello@artisantz.com</p>
+                            <p>artisantzfbn@gmail.com</p>
                         </div>
 
                     </div>
@@ -186,7 +186,7 @@
 
                         <div>
                             <small>Phone</small>
-                            <p>+62 812 3456 7890</p>
+                            <p>+62 8564 5160 494</p>
                         </div>
 
                     </div>
