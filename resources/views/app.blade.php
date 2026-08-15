@@ -31,7 +31,8 @@
 @vite([
     'resources/css/navfot.css',
     'resources/css/loader.css',
-    'resources/css/about.css'
+    'resources/css/about.css',
+    'resources/css/event.css'
 ])
 
 <link rel="stylesheet"

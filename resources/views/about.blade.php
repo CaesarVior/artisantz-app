@@ -84,7 +84,7 @@
                 </div>
 
                 <div class="contact-right">
-                    <h3>hello@artisantz.com</h3>
+                    <h3>fbnartisantz@gmail.com</h3>
                     <p>View Profile</p>
                 </div>
 
