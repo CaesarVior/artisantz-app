@@ -1,0 +1,20 @@
+services:
+  artisantz_app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: artisantz-app:latest
+    container_name: artisantz-app-container
+    restart: always
+    ports:
+      - "8002:80"
+    env_file:
+      - .env
+    environment:
+      - WEB_DOCUMENT_ROOT=/app/public
+    networks:
+      - network-main-mysql
+
+networks:
+  network-main-mysql:
+    external: true

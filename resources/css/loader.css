@@ -1,0 +1,51 @@
+.ql-editor.testimonial {
+  white-space: normal !important;
+}
+
+/* Fade out loading */
+#loadingOverlay.fade-out {
+  opacity: 0;
+  visibility: hidden;
+  transition:
+    opacity 0.5s ease,
+    visibility 0.5s ease;
+}
+
+/* Animasi rotasi halus (smooth) */
+@keyframes spinSmooth {
+  from {
+    transform: rotate(0deg);
+  }
+
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.spin-smooth {
+  animation: spinSmooth 3s linear infinite;
+}
+
+/* Efek heartbeat untuk logo */
+@keyframes heartbeat {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  25% {
+    transform: scale(1.05);
+  }
+
+  50% {
+    transform: scale(0.97);
+  }
+
+  75% {
+    transform: scale(1.02);
+  }
+}
+
+.heartbeat {
+  animation: heartbeat 1.5s ease-in-out infinite;
+}
