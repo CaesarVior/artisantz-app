@@ -33,7 +33,7 @@
                     <span>→</span>
                 </a>
 
-                <div class="about-info">
+                <div class="about-info-home">
 
                     <div>
                         <strong>01</strong>
@@ -109,28 +109,26 @@
 
                 </div>
 
-<a href="https://www.google.com/maps/@-7.974982225589408,112.66183381783344,20z"
-   target="_blank"
-   rel="noopener noreferrer"
-   class="map-btn">
-    Open Google Maps →
-</a>
-            </div>
+            <a href="https://www.google.com/maps/@-7.974982225589408,112.66183381783344,20z"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="map-btn">
+                Open Google Maps →
+            </a>
+                        </div>
 
 
             <div class="location-right">
 
-                <div class="map-container">
-
-                    <iframe
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d1!2d0!3d0"
-                        width="100%"
-                        height="100%"
-                        style="border:0;"
-                        allowfullscreen=""
-                        loading="lazy"
-                        referrerpolicy="no-referrer-when-downgrade">
-                    </iframe>
+            <iframe
+                src="https://www.google.com/maps?q=-7.974982225589408,112.66183381783344&z=20&output=embed"
+                width="600"
+                height="450"
+                style="border:0;"
+                allowfullscreen=""
+                loading="lazy"
+                referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
 
                 </div>
 

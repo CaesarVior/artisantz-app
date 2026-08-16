@@ -976,7 +976,7 @@ body {
 
 /* About information */
 
-.about-info {
+.about-info-home {
     display: grid;
 
     grid-template-columns: repeat(3, 1fr);
@@ -1806,8 +1806,6 @@ body {
 
     color: var(--brown-light);
 }
-
-
 /* Map button */
 
 .map-btn {
@@ -1841,8 +1839,45 @@ body {
 
 /* Map */
 
+/* =========================================================
+   LOCATION MAP
+========================================================= */
+
 .location-right {
-    height: 520px;
+    width: 100%;
+    max-width: 600px;
+
+    height: 450px;
+
+    overflow: hidden;
+
+    border-radius: 24px;
+
+    /* Frame cream + gold */
+    padding: 5px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #a97832,
+            #e4c47f,
+            #b88942
+        );
+
+    box-shadow:
+        0 20px 50px rgba(59, 41, 32, 0.15);
+}
+
+
+.location-right iframe {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    border: 0;
+
+    border-radius: 19px;
 }
 
 .map-container {
@@ -3677,4 +3712,1239 @@ border-radius: 30px;
 
         font-size: 12px;
     }
+}
+/* =========================================================
+   HOME RESPONSIVE
+   ARTISANTZ
+========================================================= */
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    /* ================= NAVBAR ================= */
+
+    .navbar {
+        width: 90%;
+    }
+
+
+    /* ================= HERO ================= */
+
+    .hero {
+        min-height: 900px;
+    }
+
+    .hero-left h1 {
+        font-size: clamp(48px, 7vw, 68px);
+    }
+
+    .hero-left p {
+        max-width: 340px;
+        font-size: 13px;
+    }
+
+
+    .hero-image {
+        height: 500px;
+    }
+
+    .hero-image-bg {
+        width: 360px;
+        height: 360px;
+    }
+
+    .hero-image::before {
+        width: 430px;
+        height: 430px;
+    }
+
+
+    /* ================= HERO BOTTOM ================= */
+
+    .hero-bottom {
+        left: 5%;
+        right: 5%;
+    }
+
+
+    /* ================= ARTISANTZ SECTION ================= */
+
+    .artisantz-section {
+        padding: 90px 0;
+    }
+
+    .artisantz-wrapper {
+        gap: 35px;
+    }
+
+    .artisantz-left h2 {
+        font-size: 45px;
+        padding: 20px;
+    }
+
+    .artisantz-right p {
+        font-size: 16px;
+    }
+
+
+    /* ================= BEST SELLER ================= */
+
+    .artisantz-bottom {
+        padding: 100px 0;
+    }
+
+    .best-header {
+        gap: 30px;
+        margin-bottom: 50px;
+    }
+
+    .best-title {
+        font-size: clamp(55px, 9vw, 80px);
+    }
+
+    .best-header > p {
+        max-width: 300px;
+        font-size: 11px;
+    }
+
+    .podium-wrapper {
+        gap: 20px;
+        min-height: 500px;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+
+    /* =====================================================
+       GLOBAL
+    ===================================================== */
+
+    body {
+        overflow-x: hidden;
+    }
+
+    .container {
+        width: 90%;
+    }
+
+
+    /* =====================================================
+       NAVBAR
+    ===================================================== */
+
+    .navbar {
+        width: 92%;
+
+        min-height: 58px;
+
+        top: 12px;
+
+        margin: 0;
+
+        padding: 8px 12px 8px 16px;
+
+        border-radius: 20px;
+    }
+
+    .navbar-logo img {
+        width: 100px;
+        height: 42px;
+    }
+
+
+    /* =====================================================
+       HERO
+    ===================================================== */
+
+    .hero {
+        min-height: auto;
+
+        padding:
+            130px 0
+            100px;
+    }
+
+
+    /* Hero wrapper */
+
+    .hero-wrapper {
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        justify-content: center;
+
+        gap: 45px;
+
+        text-align: center;
+    }
+
+
+    /* Left */
+
+    .hero-left {
+        width: 100%;
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+    }
+
+
+    .hero-label {
+        margin-bottom: 15px;
+
+        font-size: 9px;
+
+        letter-spacing: 2.5px;
+    }
+
+
+    .hero-left h1 {
+        max-width: 500px;
+
+        font-size: clamp(42px, 11vw, 58px);
+
+        line-height: 0.98;
+
+        letter-spacing: -2px;
+    }
+
+
+    .hero-left p {
+        max-width: 420px;
+
+        margin: 22px auto;
+
+        font-size: 12px;
+
+        line-height: 1.8;
+    }
+
+
+    /* Button */
+
+    .hero-btn {
+        padding: 13px 23px;
+
+        font-size: 10px;
+    }
+
+
+    /* =====================================================
+       HERO IMAGE
+    ===================================================== */
+
+    .hero-image {
+        width: 100%;
+
+        height: 350px;
+    }
+
+
+    .hero-image-bg {
+        width: 280px;
+        height: 280px;
+    }
+
+
+    .hero-image::before {
+        width: 340px;
+        height: 340px;
+    }
+
+
+    .hero-image img {
+        max-width: 300px;
+
+        height: auto;
+    }
+
+
+    /* =====================================================
+       HERO BOTTOM
+    ===================================================== */
+
+    .hero-bottom {
+        position: relative;
+
+        left: auto;
+        right: auto;
+        bottom: auto;
+
+        width: 90%;
+
+        margin: 50px auto 0;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: space-between;
+
+        gap: 15px;
+
+        padding-top: 15px;
+    }
+
+
+    .hero-bottom span {
+        font-size: 8px;
+
+        letter-spacing: 1.5px;
+    }
+
+
+    /* =====================================================
+       ARTISANTZ SECTION
+    ===================================================== */
+
+    .artisantz-section {
+        padding: 70px 0;
+    }
+
+
+    .artisantz-wrapper {
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        justify-content: center;
+
+        gap: 20px;
+
+        text-align: center;
+    }
+
+
+    .artisantz-left,
+    .artisantz-right {
+        width: 100%;
+    }
+
+
+    .artisantz-left h2 {
+        padding: 0;
+
+        margin: 0;
+
+        font-size: clamp(38px, 10vw, 52px);
+
+        line-height: 1;
+
+        letter-spacing: -2px;
+    }
+
+
+    .artisantz-right p {
+        max-width: 500px;
+
+        margin: 0 auto;
+
+        font-size: 13px;
+
+        line-height: 1.8;
+    }
+
+
+    /* =====================================================
+       BOTTOM CARD
+    ===================================================== */
+
+    .artisantz-bottom {
+        padding: 70px 0;
+    }
+
+
+    .artisantz-bottom .bard {
+        width: 92%;
+
+        min-height: auto;
+
+        padding: 25px;
+
+        transform: none;
+    }
+
+
+    /* =====================================================
+       BEST SELLER HEADER
+    ===================================================== */
+
+    .best-header {
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        justify-content: center;
+
+        gap: 25px;
+
+        margin-bottom: 45px;
+
+        text-align: center;
+    }
+
+
+    .best-title {
+        font-size: clamp(48px, 13vw, 70px);
+
+        letter-spacing: -3px;
+    }
+
+
+    .best-header > p {
+        max-width: 400px;
+
+        font-size: 11px;
+
+        line-height: 1.8;
+    }
+
+
+    /* =====================================================
+       PODIUM
+    ===================================================== */
+
+    .podium-wrapper {
+        min-height: auto;
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        justify-content: center;
+
+        gap: 20px;
+    }
+
+
+    .podium-bg {
+        width: 400px;
+        height: 400px;
+
+        top: 50%;
+
+        transform: translateY(-50%);
+    }
+
+
+    .rank {
+        width: 100%;
+
+        max-width: 330px;
+    }
+
+
+    /* =====================================================
+       BEST SELLER CARD
+    ===================================================== */
+
+    .best-card {
+        width: 100%;
+    }
+
+
+    /* =====================================================
+       FOOTER
+    ===================================================== */
+
+    .footer-container {
+        width: 90%;
+
+        padding: 55px 0 45px;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        gap: 40px;
+
+        text-align: center;
+    }
+
+
+    .footer-left {
+        width: 100%;
+
+        justify-content: center;
+    }
+
+
+    .footer-image {
+        align-items: center;
+    }
+
+
+    .footer-image img {
+        width: 130px;
+        height: 130px;
+    }
+
+
+    .footer-links {
+        width: 100%;
+
+        min-width: 0;
+
+        display: grid;
+
+        grid-template-columns: repeat(2, 1fr);
+
+        gap: 30px;
+    }
+
+
+    .footer-group {
+        align-items: center;
+    }
+}
+
+
+/* =========================================================
+   SMALL PHONE
+========================================================= */
+
+@media (max-width: 480px) {
+
+    /* =====================================================
+       NAVBAR
+    ===================================================== */
+
+    .navbar {
+        width: 94%;
+
+        min-height: 54px;
+
+        padding: 7px 10px 7px 13px;
+
+        border-radius: 18px;
+    }
+
+
+    .navbar-logo img {
+        width: 88px;
+
+        height: 38px;
+    }
+
+
+    .menu-toggle {
+        width: 38px;
+        height: 38px;
+
+        font-size: 15px;
+    }
+
+
+    /* =====================================================
+       HERO
+    ===================================================== */
+
+    .hero {
+        padding-top: 110px;
+
+        padding-bottom: 70px;
+    }
+
+
+    .hero-wrapper {
+        gap: 30px;
+    }
+
+
+    .hero-label {
+        margin-bottom: 12px;
+
+        font-size: 8px;
+
+        letter-spacing: 2px;
+    }
+
+
+    .hero-left h1 {
+        font-size: 39px;
+
+        letter-spacing: -1.5px;
+    }
+
+
+    .hero-left p {
+        margin: 18px auto;
+
+        font-size: 11px;
+
+        line-height: 1.8;
+    }
+
+
+    .hero-btn {
+        padding: 12px 21px;
+
+        font-size: 9px;
+    }
+
+
+    /* =====================================================
+       HERO IMAGE
+    ===================================================== */
+
+    .hero-image {
+        height: 280px;
+    }
+
+
+    .hero-image-bg {
+        width: 220px;
+        height: 220px;
+    }
+
+
+    .hero-image::before {
+        width: 270px;
+        height: 270px;
+    }
+
+
+    .hero-image img {
+        max-width: 240px;
+    }
+
+
+    /* =====================================================
+       HERO BOTTOM
+    ===================================================== */
+
+    .hero-bottom {
+        width: 92%;
+
+        margin-top: 35px;
+
+        gap: 10px;
+    }
+
+
+    .hero-bottom span {
+        font-size: 7px;
+
+        letter-spacing: 1px;
+    }
+
+
+    /* =====================================================
+       ARTISANTZ
+    ===================================================== */
+
+    .artisantz-section {
+        padding: 55px 0;
+    }
+
+
+    .artisantz-left h2 {
+        font-size: 36px;
+
+        letter-spacing: -1.5px;
+    }
+
+
+    .artisantz-right p {
+        font-size: 11px;
+
+        line-height: 1.8;
+    }
+
+
+    /* =====================================================
+       BEST SELLER
+    ===================================================== */
+
+    .artisantz-bottom {
+        padding: 60px 0;
+    }
+
+
+    .best-header {
+        margin-bottom: 35px;
+    }
+
+
+    .best-title {
+        font-size: 45px;
+
+        letter-spacing: -2px;
+    }
+
+
+    .best-header > p {
+        font-size: 10px;
+    }
+
+
+    .podium-wrapper {
+        gap: 15px;
+    }
+
+
+    .rank {
+        max-width: 290px;
+    }
+
+
+    /* =====================================================
+       FOOTER
+    ===================================================== */
+
+    .footer-container {
+        width: 92%;
+
+        padding: 45px 0 35px;
+    }
+
+
+    .footer-image img {
+        width: 110px;
+        height: 110px;
+    }
+
+
+    .footer-links {
+        grid-template-columns: 1fr;
+
+        gap: 25px;
+    }
+}
+
+
+/* =========================================================
+   VERY SMALL PHONE
+   MAX WIDTH 360px
+========================================================= */
+
+@media (max-width: 360px) {
+
+    /* =====================================================
+       GLOBAL
+    ===================================================== */
+
+    .container {
+        width: 92%;
+    }
+
+    .hero,
+    .artisantz-section,
+    .artisantz-bottom {
+        width: 100%;
+        overflow: hidden;
+    }
+
+
+    /* =====================================================
+       NAVBAR
+    ===================================================== */
+
+    .navbar {
+        width: 94%;
+
+        top: 8px;
+
+        min-height: 50px;
+
+        padding: 6px 9px 6px 11px;
+
+        border-radius: 16px;
+    }
+
+    .navbar-logo img {
+        width: 78px;
+        height: 34px;
+
+        object-fit: contain;
+    }
+
+    .menu-toggle {
+        width: 34px;
+        height: 34px;
+
+        font-size: 13px;
+
+        padding: 0;
+    }
+
+
+    /* =====================================================
+       HERO
+    ===================================================== */
+
+    .hero {
+        min-height: auto;
+
+        padding:
+            95px 0
+            55px;
+    }
+
+
+    .hero-wrapper {
+        width: 100%;
+
+        gap: 25px;
+
+        padding: 0 5px;
+    }
+
+
+    /* =====================================================
+       HERO TEXT
+    ===================================================== */
+
+    .hero-left {
+        width: 100%;
+
+        padding: 0 5px;
+    }
+
+
+    .hero-label {
+        margin-bottom: 10px;
+
+        font-size: 7px;
+
+        letter-spacing: 1.7px;
+
+        white-space: nowrap;
+    }
+
+
+    .hero-left h1 {
+        width: 100%;
+
+        max-width: 330px;
+
+        margin: 0 auto;
+
+        font-size: 31px;
+
+        line-height: 1.02;
+
+        letter-spacing: -1.2px;
+
+        word-break: normal;
+    }
+
+
+    .hero-left p {
+        width: 100%;
+
+        max-width: 300px;
+
+        margin: 15px auto;
+
+        font-size: 10px;
+
+        line-height: 1.75;
+    }
+
+
+    /* =====================================================
+       HERO BUTTON
+    ===================================================== */
+
+    .hero-btn {
+        min-height: 38px;
+
+        padding: 10px 17px;
+
+        font-size: 8px;
+
+        letter-spacing: 0.3px;
+
+        border-radius: 9px;
+    }
+
+
+    /* =====================================================
+       HERO IMAGE
+    ===================================================== */
+
+    .hero-image {
+        width: 100%;
+
+        height: 225px;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+    }
+
+
+    .hero-image-bg {
+        width: 165px;
+        height: 165px;
+    }
+
+
+    .hero-image::before {
+        width: 205px;
+        height: 205px;
+    }
+
+
+    .hero-image img {
+        width: auto;
+
+        max-width: 185px;
+
+        max-height: 210px;
+
+        object-fit: contain;
+    }
+
+
+    /* =====================================================
+       HERO BOTTOM
+    ===================================================== */
+
+    .hero-bottom {
+        width: 94%;
+
+        margin: 25px auto 0;
+
+        padding-top: 12px;
+
+        gap: 7px;
+    }
+
+
+    .hero-bottom span {
+        font-size: 5.5px;
+
+        line-height: 1.4;
+
+        letter-spacing: 0.7px;
+
+        white-space: nowrap;
+    }
+
+
+    /* =====================================================
+       ARTISANTZ SECTION
+    ===================================================== */
+
+    .artisantz-section {
+        padding: 45px 0;
+    }
+
+
+    .artisantz-wrapper {
+        width: 100%;
+
+        gap: 17px;
+
+        padding: 0 5px;
+    }
+
+
+    .artisantz-left {
+        width: 100%;
+    }
+
+
+    .artisantz-left h2 {
+        width: 100%;
+
+        margin: 0;
+
+        padding: 0;
+
+        font-size: 29px;
+
+        line-height: 1.05;
+
+        letter-spacing: -1px;
+    }
+
+
+    .artisantz-right {
+        width: 100%;
+    }
+
+
+    .artisantz-right p {
+        width: 100%;
+
+        max-width: 290px;
+
+        margin: 0 auto;
+
+        font-size: 10px;
+
+        line-height: 1.75;
+    }
+
+
+    /* =====================================================
+       ARTISANTZ BOTTOM
+    ===================================================== */
+
+    .artisantz-bottom {
+        padding: 45px 0;
+    }
+
+
+    .artisantz-bottom .bard {
+        width: 94%;
+
+        min-height: auto;
+
+        margin: 0 auto;
+
+        padding: 20px;
+
+        transform: none;
+
+        border-radius: 16px;
+    }
+
+
+    /* =====================================================
+       BEST SELLER HEADER
+    ===================================================== */
+
+    .best-header {
+        width: 100%;
+
+        gap: 17px;
+
+        margin-bottom: 28px;
+
+        padding: 0 5px;
+    }
+
+
+    .best-title {
+        max-width: 330px;
+
+        margin: 0 auto;
+
+        font-size: 37px;
+
+        line-height: 0.95;
+
+        letter-spacing: -1.8px;
+    }
+
+
+    .best-header > p {
+        width: 100%;
+
+        max-width: 280px;
+
+        margin: 0 auto;
+
+        font-size: 9px;
+
+        line-height: 1.7;
+    }
+
+
+    /* =====================================================
+       PODIUM
+    ===================================================== */
+
+    .podium-wrapper {
+        width: 100%;
+
+        min-height: auto;
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        gap: 12px;
+
+        padding: 0 5px;
+    }
+
+
+    .podium-bg {
+        width: 240px;
+        height: 240px;
+
+        top: 50%;
+
+        transform: translateY(-50%);
+    }
+
+
+    .rank {
+        width: 100%;
+
+        max-width: 270px;
+
+        min-width: 0;
+    }
+
+
+    .best-card {
+        width: 100%;
+
+        min-width: 0;
+
+        padding: 18px;
+
+        border-radius: 15px;
+    }
+
+
+    /* =====================================================
+       FOOTER
+    ===================================================== */
+
+    .footer-container {
+        width: 92%;
+
+        padding: 40px 0 30px;
+
+        gap: 30px;
+    }
+
+
+    .footer-image img {
+        width: 95px;
+        height: 95px;
+    }
+
+
+    .footer-links {
+        width: 100%;
+
+        grid-template-columns: 1fr;
+
+        gap: 20px;
+    }
+
+
+    .footer-group {
+        width: 100%;
+
+        text-align: center;
+    }
+
+
+    /* =====================================================
+       PREVENT OVERFLOW
+    ===================================================== */
+
+    .hero *,
+    .artisantz-section *,
+    .artisantz-bottom *,
+    .footer-container * {
+        max-width: 100%;
+    }
+}
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    .location-right {
+        max-width: 100%;
+
+        height: 400px;
+    }
+
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .location-right {
+        width: 100%;
+
+        max-width: none;
+
+        height: 350px;
+
+        padding: 4px;
+
+        border-radius: 20px;
+    }
+
+
+    .location-right iframe {
+        border-radius: 16px;
+    }
+
+}
+
+
+/* =========================================================
+   SMALL PHONE
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .location-right {
+        height: 300px;
+
+        padding: 3px;
+
+        border-radius: 17px;
+    }
+
+
+    .location-right iframe {
+        border-radius: 14px;
+    }
+
+}
+
+
+/* =========================================================
+   VERY SMALL PHONE
+========================================================= */
+
+@media (max-width: 360px) {
+
+    .location-right {
+        width: 100%;
+
+        height: 250px;
+
+        border-radius: 14px;
+    }
+
+
+    .location-right iframe {
+        border-radius: 11px;
+    }
+
 }
