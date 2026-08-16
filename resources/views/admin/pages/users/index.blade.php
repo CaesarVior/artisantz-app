@@ -68,10 +68,11 @@
                                 <th class="px-4 py-3 text-left text-sm font-bold text-gray-700 w-64">
                                     <span>{{ __('admin-user.index-table-email') }}</span>
                                 </th>
-
-                                {{-- No. Telepon --}}
-                                <th class="px-4 py-3 text-center text-sm font-bold text-gray-700 w-40">
-                                    <span>{{ __('admin-user.index-table-phone-number') }}</span>
+                                <th class="px-4 py-3 text-center text-sm font-bold text-gray-700 w-96">
+                                    <span>{{ __('admin-user.index-table-content') }}</span>
+                                </th>
+                                <th class="px-4 py-3 text-left text-sm font-bold text-gray-700 w-28">
+                                    <span>{{ __('admin-user.index-table-status') }}</span>
                                 </th>
 
                                 {{-- Role --}}
@@ -174,5 +175,4 @@
             </nav>
         </div>
     </div>
-    @vite('resources/js/admin/pages/blog/index.js')
 @endsection

@@ -28,17 +28,41 @@
     @stack('schema')
     {{ $schema ?? '' }}
 
-    @vite(['resources/css/navfot.css'])
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+@vite([
+    'resources/css/navfot.css',
+    'resources/css/loader.css',
+    'resources/css/about.css',
+    'resources/css/event.css'
+])
+
+<link rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 
 <body>
-    <div id="footer-preloader">
-        <div class="footer-loader-wrapper">
-            <div class="footer-loader-spinner"></div>
-            <p class="footer-loader-text">Tunggu Sebentar</p>
+<div id="loadingOverlay">
+
+    <div class="loader-content">
+
+        <img
+            src="{{ asset('img/artisantz-logo-no-bg-full-version.webp') }}"
+            alt="Artisantz Coffee & Eatery"
+            class="loader-logo heartbeat"
+        >
+
+        <div class="loader-dots">
+            <span></span>
+            <span></span>
+            <span></span>
         </div>
+
+        <p class="loader-text">
+            Tunggu Sebentar
+        </p>
+
     </div>
+
+</div>
     @if (!Request::is('login'))
         <x-navbar />
     @endif
@@ -50,26 +74,38 @@
     @if (!Request::is('login'))
         <x-footer />
     @endif
+<script>
+    // Navbar scroll
+    window.addEventListener('scroll', function () {
 
-    <script>
-        window.addEventListener('scroll', function() {
+        const navbar = document.querySelector('.navbar');
 
-            const navbar = document.querySelector('.navbar');
-
+        if (navbar) {
             if (window.scrollY > 50) {
                 navbar.classList.add('scrolled');
             } else {
                 navbar.classList.remove('scrolled');
             }
-        });
+        }
 
-        window.addEventListener('load', function() {
-            const preloader = document.getElementById('footer-preloader');
-            if (preloader) {
-                preloader.classList.add('footer-preloader-hidden');
-            }
-        });
-    </script>
+    });
+
+
+    // Loading screen
+    window.addEventListener('load', function () {
+
+        const loader = document.getElementById('loadingOverlay');
+
+        if (loader) {
+            setTimeout(function () {
+                loader.classList.add('fade-out');
+            }, 500);
+        }
+
+    });
+</script>
+
+
 
 </body>
 

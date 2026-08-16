@@ -10,40 +10,20 @@ use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
-| Public Routes
-|--------------------------------------------------------------------------
-*/
-Route::get('/', [HomeController::class, 'index'])->name('home-index');
-
-Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery.index');
-Route::get('/about', function () {
-    return view('about');
-})->name('about');
-
-Route::get('/contact', function () {
-    return view('contact');
-})->name('contact');
-
-// Public Event
-Route::get('/events', [EventController::class, 'publicIndex'])->name('events.index');
-
-// Authentication
-Route::get('/login', [AuthController::class, 'showLoginForm'])->name('auth.login');
-Route::post('/login', [AuthController::class, 'login'])->name('login');
-Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
-
-/*
-|--------------------------------------------------------------------------
-| Admin Routes Group
+| Admin Routes Closure
 |--------------------------------------------------------------------------
 */
 $adminRoutes = function () {
+    Route::get('/', function () {
+        return redirect()->route('admin-events');
+    });
+
     // Events
     Route::get('/event', [EventController::class, 'index'])->name('admin-events');
     Route::get('/event/create', [EventController::class, 'create'])->name('admin-events-create');
-    Route::post('/event', [EventController::class, 'store'])->name('admin-events-store'); // Disamakan URI-nya dengan POST
-    Route::get('/event/{id}/edit', [EventController::class, 'edit'])->name('admin-events-edit'); // RESTful URL convention
-    Route::put('/event/{id}', [EventController::class, 'update'])->name('admin-events-update'); // Gunakan {id} konsisten
+    Route::post('/event', [EventController::class, 'store'])->name('admin-events-store');
+    Route::get('/event/{id}/edit', [EventController::class, 'edit'])->name('admin-events-edit');
+    Route::put('/event/{id}', [EventController::class, 'update'])->name('admin-events-update');
     Route::delete('/event/{id}', [EventController::class, 'destroy'])->name('admin-events-destroy');
 
     // Users
@@ -65,22 +45,50 @@ $adminRoutes = function () {
 
 /*
 |--------------------------------------------------------------------------
-| Environment-Based Domain/Prefix Loading
+| Environment & Domain Registration
 |--------------------------------------------------------------------------
 */
+
 if (app()->environment('local')) {
-    Route::prefix('admin')
-        ->middleware('auth')
-        ->group($adminRoutes);
+
+    // 1. LOKAL (localhost)
+    Route::get('/', [HomeController::class, 'index'])->name('home-index');
+    Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery.index');
+    Route::get('/about', fn () => view('about'))->name('about');
+    Route::get('/contact', fn () => view('contact'))->name('contact');
+    Route::get('/events', [EventController::class, 'publicIndex'])->name('events.index');
+
+    Route::get('/login', [AuthController::class, 'showLoginForm'])->name('auth.login');
+    Route::post('/login', [AuthController::class, 'login'])->name('login');
+    Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+    Route::prefix('admin')->middleware('auth')->group($adminRoutes);
+
 } else {
-    Route::domain('admin-artisantz.nivor.id')
-        ->middleware('auth')
-        ->group(function () use ($adminRoutes) {
-            Route::get('/', function () {
-                return redirect()->route('admin-events');
-            });
-            $adminRoutes();
-        });
+
+    // 2. STAGING / PRODUCTION (Multi-Domain)
+
+    // A. Domain Admin (HANYA route admin & login admin)
+    Route::domain('admin-artisantz.nivor.id')->group(function () use ($adminRoutes) {
+        Route::get('/login', [AuthController::class, 'showLoginForm'])->name('auth.login');
+        Route::post('/login', [AuthController::class, 'login'])->name('login');
+        Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+
+        Route::middleware('auth')->group($adminRoutes);
+    });
+
+    // B. Domain Utama / Public (artisantz.nivor.id)
+    Route::domain('artisantz.nivor.id')->group(function () {
+        Route::get('/', [HomeController::class, 'index'])->name('home-index');
+        Route::get('/gallery', [GalleryController::class, 'index'])->name('gallery.index');
+        Route::get('/about', fn () => view('about'))->name('about');
+        Route::get('/contact', fn () => view('contact'))->name('contact');
+        Route::get('/events', [EventController::class, 'publicIndex'])->name('events.index');
+
+        Route::get('/login', [AuthController::class, 'showLoginForm'])->name('auth.login');
+        Route::post('/login', [AuthController::class, 'login'])->name('login');
+        Route::post('/logout', [AuthController::class, 'logout'])->name('logout');
+    });
 }
 
 require __DIR__.'/auth.php';

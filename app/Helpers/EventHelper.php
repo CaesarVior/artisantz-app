@@ -65,9 +65,9 @@ class EventHelper
             $sequence = sprintf('%02d', $index + 1);
             $filename = "{$timestamp}_{$sequence}_{$sanitizedName}.{$extension}";
 
-            $file->move(public_path("event/{$slug}"), $filename);
+            $file->move(public_path("img/event/{$slug}"), $filename);
 
-            $paths[] = "event/{$slug}/{$filename}";
+            $paths[] = "img/event/{$slug}/{$filename}";
         }
 
         return $paths;

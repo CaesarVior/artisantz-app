@@ -24,6 +24,8 @@ ENV APP_ENV=staging
 
 WORKDIR /app
 
+COPY vhost.conf /opt/docker/etc/nginx/vhost.conf
+
 COPY --chown=application:application . .
 COPY --from=vendor --chown=application:application /app/vendor/ ./vendor/
 

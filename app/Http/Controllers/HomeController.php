@@ -30,7 +30,7 @@ class HomeController extends Controller
         if ($event) {
             // Karena $event berupa JsonResource/Arrayable, aman akses via property $event->name
             $slug = Str::slug($event->name);
-            $folderPath = public_path("event/{$slug}");
+            $folderPath = public_path("img/event/{$slug}");
 
             // 3. Cek folder fisik & ambil foto urutan pertama (_01_)
             if (file_exists($folderPath) && is_dir($folderPath)) {
@@ -39,7 +39,7 @@ class HomeController extends Controller
                 if (! empty($files)) {
                     sort($files); // Mengurutkan file dari _01_
                     $firstPhoto = reset($files);
-                    $bannerImg = asset("event/{$slug}/{$firstPhoto}");
+                    $bannerImg = asset("img/event/{$slug}/{$firstPhoto}");
                 }
             }
         }
