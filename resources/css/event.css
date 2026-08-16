@@ -1,0 +1,1155 @@
+
+/* =========================================================
+   EVENT PAGE
+   ARTISANTZ — LUXURY CREAM & GOLD
+========================================================= */
+
+.event-section {
+    position: relative;
+
+    width: 100%;
+    min-height: 100vh;
+
+    padding: 150px 0 110px;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            135deg,
+            #fffdf9 0%,
+            #f8f3eb 48%,
+            #f1e9dc 100%
+        );
+}
+
+
+/* =========================================================
+   CONTAINER
+========================================================= */
+
+.event-container {
+    position: relative;
+    z-index: 2;
+
+    width: 88%;
+    max-width: 1250px;
+
+    margin: 0 auto;
+}
+
+
+/* =========================================================
+   PAGE TITLE
+========================================================= */
+
+.event-container > h2 {
+    position: relative;
+
+    margin: 0 0 55px;
+
+    color: var(--brown);
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: clamp(38px, 5vw, 62px);
+
+    font-weight: 700;
+
+    line-height: 1.1;
+
+    letter-spacing: -2px;
+
+    text-align: center;
+}
+
+
+/* Small label above title */
+
+.event-container > h2::before {
+    content: "ARTISANTZ EVENTS";
+
+    display: block;
+
+    margin-bottom: 13px;
+
+    color: #b4863d;
+
+    font-size: 11px;
+
+    font-weight: 600;
+
+    letter-spacing: 4px;
+}
+
+
+/* Gold line */
+
+.event-container > h2::after {
+    content: "";
+
+    display: block;
+
+    width: 75px;
+    height: 3px;
+
+    margin: 18px auto 0;
+
+    border-radius: 20px;
+
+    background:
+        linear-gradient(
+            90deg,
+            #a97832,
+            #e7c985,
+            #a97832
+        );
+
+    box-shadow:
+        0 4px 12px rgba(169, 120, 50, 0.18);
+}
+
+
+/* =========================================================
+   GALLERY
+========================================================= */
+
+.event-gallery {
+    position: relative;
+
+    width: 100%;
+
+    margin-bottom: 75px;
+
+    padding: 12px;
+
+    border-radius: 32px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff,
+            #f8f2e8
+        );
+
+    border: 1px solid rgba(198, 154, 82, 0.30);
+
+    box-shadow:
+        0 25px 70px rgba(72, 51, 29, 0.10);
+}
+
+
+/* =========================================================
+   SWIPER
+========================================================= */
+
+.eventGallerySwiper {
+    position: relative;
+
+    width: 100%;
+
+    height: 500px;
+
+    overflow: hidden;
+
+    border-radius: 24px;
+}
+
+
+/* =========================================================
+   SLIDE
+========================================================= */
+
+.eventGallerySwiper .swiper-slide {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    overflow: hidden;
+
+    background: #e9dfd1;
+}
+
+
+/* =========================================================
+   EVENT THUMB
+========================================================= */
+
+.event-thumb {
+    position: relative;
+
+    width: 100%;
+    height: 100%;
+
+    overflow: hidden;
+
+    background: #e9dfd1;
+}
+
+
+/* Image */
+
+.event-thumb img {
+    display: block;
+
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    transition:
+        transform 0.8s ease,
+        filter 0.5s ease;
+}
+
+
+/* Image overlay */
+
+.event-thumb::after {
+    content: "";
+
+    position: absolute;
+
+    inset: 0;
+
+    background:
+        linear-gradient(
+            180deg,
+            rgba(43, 29, 19, 0.03) 30%,
+            rgba(43, 29, 19, 0.38) 100%
+        );
+
+    pointer-events: none;
+}
+
+
+.eventGallerySwiper .swiper-slide-active .event-thumb img {
+    transform: scale(1.02);
+}
+
+
+/* =========================================================
+   COMING SOON
+========================================================= */
+
+.event-thumb.coming-soon {
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f7f0e5,
+            #e9ddcb
+        );
+}
+
+
+/* Decorative border */
+
+.event-thumb.coming-soon::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 30px;
+
+    border: 1px solid rgba(169, 120, 50, 0.30);
+
+    border-radius: 18px;
+}
+
+
+/* Remove normal image overlay */
+
+.event-thumb.coming-soon::after {
+    display: none;
+}
+
+
+.event-thumb.coming-soon span {
+    position: relative;
+    z-index: 2;
+
+    padding: 16px 30px;
+
+    color: #a97832;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 16px;
+
+    font-weight: 600;
+
+    letter-spacing: 5px;
+
+    border-top: 1px solid #c9a660;
+    border-bottom: 1px solid #c9a660;
+}
+
+
+/* =========================================================
+   SWIPER NAVIGATION
+========================================================= */
+
+.eventGallerySwiper .swiper-button-next,
+.eventGallerySwiper .swiper-button-prev {
+    width: 48px;
+    height: 48px;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255, 253, 249, 0.92);
+
+    border: 1px solid rgba(198, 154, 82, 0.35);
+
+    box-shadow:
+        0 8px 25px rgba(50, 35, 22, 0.15);
+
+    backdrop-filter: blur(8px);
+
+    transition:
+        transform 0.3s ease,
+        background 0.3s ease;
+}
+
+
+.eventGallerySwiper .swiper-button-next:hover,
+.eventGallerySwiper .swiper-button-prev:hover {
+    transform: scale(1.08);
+
+    background: #fffaf0;
+}
+
+
+.eventGallerySwiper .swiper-button-next::after,
+.eventGallerySwiper .swiper-button-prev::after {
+    color: #a97832;
+
+    font-size: 17px;
+
+    font-weight: 700;
+}
+
+
+.eventGallerySwiper .swiper-button-next {
+    right: 25px;
+}
+
+
+.eventGallerySwiper .swiper-button-prev {
+    left: 25px;
+}
+
+
+/* =========================================================
+   PAGINATION
+========================================================= */
+
+.eventGallerySwiper .swiper-pagination {
+    bottom: 22px;
+}
+
+
+.eventGallerySwiper .swiper-pagination-bullet {
+    width: 7px;
+    height: 7px;
+
+    opacity: 1;
+
+    background: rgba(255, 255, 255, 0.65);
+
+    transition:
+        width 0.3s ease,
+        border-radius 0.3s ease;
+}
+
+
+.eventGallerySwiper .swiper-pagination-bullet-active {
+    width: 25px;
+
+    border-radius: 10px;
+
+    background: #d7b66f;
+}
+
+
+/* =========================================================
+   EVENT CARD
+========================================================= */
+
+.event-card {
+    position: relative;
+
+    display: grid;
+
+    grid-template-columns: 1.5fr 0.8fr;
+
+    gap: 50px;
+
+    align-items: center;
+
+    margin-bottom: 30px;
+
+    padding: 45px 50px;
+
+    overflow: hidden;
+
+    border-radius: 30px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff 0%,
+            #fbf7f0 100%
+        );
+
+    border: 1px solid rgba(198, 154, 82, 0.25);
+
+    box-shadow:
+        0 20px 55px rgba(70, 50, 30, 0.07);
+
+    transition:
+        transform 0.35s ease,
+        box-shadow 0.35s ease,
+        border-color 0.35s ease;
+}
+
+
+.event-card:hover {
+    transform: translateY(-6px);
+
+    border-color: rgba(198, 154, 82, 0.45);
+
+    box-shadow:
+        0 28px 65px rgba(70, 50, 30, 0.11);
+}
+
+
+/* Decorative gold line */
+
+.event-card::before {
+    content: "";
+
+    position: absolute;
+
+    left: 0;
+    top: 35px;
+    bottom: 35px;
+
+    width: 4px;
+
+    border-radius: 0 10px 10px 0;
+
+    background:
+        linear-gradient(
+            180deg,
+            #a97832,
+            #eed18f,
+            #a97832
+        );
+}
+
+
+/* Decorative circle */
+
+.event-card::after {
+    content: "";
+
+    position: absolute;
+
+    width: 190px;
+    height: 190px;
+
+    right: -100px;
+    top: -100px;
+
+    border-radius: 50%;
+
+    border: 1px solid rgba(198, 154, 82, 0.12);
+
+    box-shadow:
+        0 0 0 25px rgba(198, 154, 82, 0.025);
+}
+
+
+/* =========================================================
+   EVENT LEFT
+========================================================= */
+
+.event-left {
+    position: relative;
+    z-index: 2;
+}
+
+
+/* =========================================================
+   EVENT TITLE
+========================================================= */
+
+.event-title {
+    margin: 0 0 22px;
+
+    color: #76552f;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: clamp(28px, 3vw, 40px);
+
+    font-weight: 700;
+
+    line-height: 1.2;
+
+    letter-spacing: -0.8px;
+}
+
+
+/* =========================================================
+   QUILL DESCRIPTION
+========================================================= */
+
+.ql-editor {
+    max-width: 700px;
+
+    padding: 0 !important;
+
+    color: #756b60;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 14px;
+
+    line-height: 1.9;
+}
+
+
+/* Reset Quill */
+
+.ql-editor p {
+    margin-bottom: 12px;
+}
+
+
+.ql-editor h1,
+.ql-editor h2,
+.ql-editor h3 {
+    color: #8d682f;
+}
+
+
+.ql-editor strong {
+    color: #76552f;
+}
+
+
+/* =========================================================
+   THEME
+========================================================= */
+
+.event-left > p {
+    display: inline-block;
+
+    margin: 5px 0 22px !important;
+
+    padding: 7px 14px;
+
+    color: #a97832 !important;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 12px !important;
+
+    font-weight: 500;
+
+    letter-spacing: 0.5px;
+
+    background: rgba(198, 154, 82, 0.09);
+
+    border: 1px solid rgba(198, 154, 82, 0.20);
+
+    border-radius: 50px;
+}
+
+
+/* =========================================================
+   EVENT INFO
+========================================================= */
+
+.event-info {
+    display: flex;
+
+    align-items: center;
+
+    gap: 15px;
+
+    margin-top: 14px;
+
+    color: #71685e;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 13px;
+
+    line-height: 1.7;
+}
+
+
+.event-info > span {
+    width: 40px;
+    height: 40px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    font-size: 16px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f7ecd9,
+            #fffaf1
+        );
+
+    border: 1px solid rgba(198, 154, 82, 0.25);
+
+    box-shadow:
+        0 5px 15px rgba(80, 55, 30, 0.06);
+}
+
+
+.event-info strong {
+    display: block;
+
+    color: #76552f;
+
+    font-weight: 600;
+}
+
+
+/* =========================================================
+   EVENT RIGHT
+========================================================= */
+
+.event-right {
+    position: relative;
+    z-index: 2;
+
+    padding: 32px;
+
+    text-align: center;
+
+    border-radius: 22px;
+
+    background:
+        linear-gradient(
+            145deg,
+            #76552f,
+            #4a3424
+        );
+
+    box-shadow:
+        0 15px 35px rgba(70, 47, 25, 0.15);
+}
+
+
+.event-right h3 {
+    margin: 0 0 12px;
+
+    color: #efd18a;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 21px;
+
+    font-weight: 600;
+}
+
+
+.event-right p {
+    margin: 0 0 25px;
+
+    color: rgba(255, 250, 241, 0.70);
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 12px;
+
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   RESERVE BUTTON
+========================================================= */
+
+.reserve-btn {
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+
+    min-height: 48px;
+
+    padding: 12px 20px;
+
+    color: #634522;
+
+    background:
+        linear-gradient(
+            135deg,
+            #f3d99b,
+            #d8b568
+        );
+
+    border: 1px solid rgba(255, 239, 194, 0.5);
+
+    border-radius: 12px;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 12px;
+
+    font-weight: 600;
+
+    text-decoration: none;
+
+    box-shadow:
+        0 8px 20px rgba(0, 0, 0, 0.12);
+
+    transition:
+        transform 0.3s ease,
+        box-shadow 0.3s ease,
+        filter 0.3s ease;
+}
+
+
+.reserve-btn:hover {
+    color: #55391e;
+
+    transform: translateY(-3px);
+
+    filter: brightness(1.05);
+
+    box-shadow:
+        0 12px 25px rgba(0, 0, 0, 0.18);
+}
+
+
+/* =========================================================
+   EMPTY EVENT STATE
+   Saat belum ada event
+========================================================= */
+
+.event-container > .p-8 {
+    position: relative;
+
+    min-height: 240px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 40px;
+
+    padding: 50px !important;
+
+    overflow: hidden;
+
+    border-radius: 28px !important;
+
+    background:
+        linear-gradient(
+            135deg,
+            #ffffff,
+            #f8f1e6
+        ) !important;
+
+    border: 1px solid rgba(198, 154, 82, 0.25);
+
+    box-shadow:
+        0 20px 50px rgba(70, 50, 30, 0.07);
+}
+
+
+/* Empty state decorative frame */
+
+.event-container > .p-8::before {
+    content: "";
+
+    position: absolute;
+
+    inset: 20px;
+
+    border: 1px dashed rgba(198, 154, 82, 0.28);
+
+    border-radius: 20px;
+
+    pointer-events: none;
+}
+
+
+.event-container > .p-8 p {
+    position: relative;
+    z-index: 2;
+
+    margin: 0;
+
+    color: #9a8975 !important;
+
+    font-family: "Poppins", sans-serif;
+
+    font-size: 14px;
+
+    line-height: 1.8;
+}
+
+
+/* =========================================================
+   TABLET
+========================================================= */
+
+@media (max-width: 1000px) {
+
+    .event-container {
+        width: 90%;
+    }
+
+
+    .eventGallerySwiper {
+        height: 430px;
+    }
+
+
+    .event-card {
+        grid-template-columns: 1fr;
+
+        gap: 30px;
+
+        padding: 38px 40px;
+    }
+
+
+    .event-right {
+        max-width: 450px;
+
+        width: 100%;
+
+        margin: 0 auto;
+    }
+}
+
+
+/* =========================================================
+   MOBILE
+========================================================= */
+
+@media (max-width: 768px) {
+
+    .event-section {
+        padding: 120px 0 75px;
+    }
+
+
+    .event-container {
+        width: 90%;
+    }
+
+
+    .event-container > h2 {
+        margin-bottom: 40px;
+
+        font-size: 40px;
+
+        letter-spacing: -1.5px;
+    }
+
+
+    .event-container > h2::before {
+        font-size: 9px;
+
+        letter-spacing: 3px;
+    }
+
+
+    .event-gallery {
+        margin-bottom: 55px;
+
+        padding: 8px;
+
+        border-radius: 24px;
+    }
+
+
+    .eventGallerySwiper {
+        height: 350px;
+
+        border-radius: 18px;
+    }
+
+
+    .eventGallerySwiper .swiper-button-next,
+    .eventGallerySwiper .swiper-button-prev {
+        width: 40px;
+        height: 40px;
+    }
+
+
+    .eventGallerySwiper .swiper-button-next {
+        right: 15px;
+    }
+
+
+    .eventGallerySwiper .swiper-button-prev {
+        left: 15px;
+    }
+
+
+    .eventGallerySwiper .swiper-button-next::after,
+    .eventGallerySwiper .swiper-button-prev::after {
+        font-size: 14px;
+    }
+
+
+    .event-card {
+        gap: 25px;
+
+        margin-bottom: 22px;
+
+        padding: 32px 25px;
+
+        border-radius: 24px;
+    }
+
+
+    .event-card::before {
+        top: 25px;
+        bottom: 25px;
+    }
+
+
+    .event-title {
+        font-size: 28px;
+
+        line-height: 1.25;
+    }
+
+
+    .ql-editor {
+        font-size: 13px;
+
+        line-height: 1.85;
+    }
+
+
+    .event-info {
+        font-size: 12px;
+
+        gap: 12px;
+    }
+
+
+    .event-info > span {
+        width: 36px;
+        height: 36px;
+
+        font-size: 14px;
+    }
+
+
+    .event-right {
+        padding: 27px 22px;
+
+        border-radius: 19px;
+    }
+
+
+    .event-right h3 {
+        font-size: 19px;
+    }
+
+
+    .event-thumb.coming-soon span {
+        font-size: 12px;
+
+        letter-spacing: 3px;
+    }
+
+
+    .event-container > .p-8 {
+        min-height: 200px;
+
+        padding: 40px 25px !important;
+    }
+
+
+    .event-container > .p-8 p {
+        font-size: 12px;
+    }
+}
+
+
+/* =========================================================
+   SMALL PHONE
+========================================================= */
+
+@media (max-width: 480px) {
+
+    .event-section {
+        padding-top: 105px;
+    }
+
+
+    .event-container > h2 {
+        font-size: 33px;
+
+        margin-bottom: 32px;
+    }
+
+
+    .event-container > h2::before {
+        font-size: 8px;
+
+        letter-spacing: 2.5px;
+    }
+
+
+    .event-container > h2::after {
+        width: 60px;
+
+        margin-top: 15px;
+    }
+
+
+    .event-gallery {
+        padding: 6px;
+
+        border-radius: 20px;
+    }
+
+
+    .eventGallerySwiper {
+        height: 270px;
+
+        border-radius: 15px;
+    }
+
+
+    .eventGallerySwiper .swiper-button-next,
+    .eventGallerySwiper .swiper-button-prev {
+        width: 34px;
+        height: 34px;
+    }
+
+
+    .eventGallerySwiper .swiper-button-next {
+        right: 10px;
+    }
+
+
+    .eventGallerySwiper .swiper-button-prev {
+        left: 10px;
+    }
+
+
+    .eventGallerySwiper .swiper-button-next::after,
+    .eventGallerySwiper .swiper-button-prev::after {
+        font-size: 12px;
+    }
+
+
+    .event-card {
+        padding: 27px 20px;
+
+        border-radius: 20px;
+    }
+
+
+    .event-card::before {
+        top: 20px;
+        bottom: 20px;
+
+        width: 3px;
+    }
+
+
+    .event-title {
+        font-size: 24px;
+
+        margin-bottom: 18px;
+    }
+
+
+    .ql-editor {
+        font-size: 12px;
+    }
+
+
+    .event-info {
+        align-items: flex-start;
+
+        font-size: 11px;
+    }
+
+
+    .event-info > span {
+        width: 32px;
+        height: 32px;
+
+        font-size: 13px;
+    }
+
+
+    .event-right {
+        padding: 25px 18px;
+    }
+
+
+    .event-right h3 {
+        font-size: 17px;
+    }
+
+
+    .event-right p {
+        font-size: 11px;
+    }
+
+
+    .reserve-btn {
+        min-height: 44px;
+
+        font-size: 11px;
+    }
+
+
+    .event-thumb.coming-soon::before {
+        inset: 20px;
+    }
+
+
+    .event-thumb.coming-soon span {
+        padding: 12px 20px;
+
+        font-size: 10px;
+
+        letter-spacing: 2px;
+    }
+}
+

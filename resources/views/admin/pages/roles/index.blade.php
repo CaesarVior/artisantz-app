@@ -63,16 +63,6 @@
                                 <th class="px-4 py-3 text-left text-sm font-bold text-gray-700 w-64">
                                     <span>{{ __('admin-role.index-table-title') }}</span>
                                 </th>
-
-                                {{-- Tanggal Dibuat --}}
-                                <th class="px-4 py-3 text-center text-sm font-bold text-gray-700 w-44">
-                                    <span>{{ __('admin-role.index-table-created-at') }}</span>
-                                </th>
-
-                                {{-- Aksi (Edit & Delete) --}}
-                                <th class="px-4 py-3 text-center text-sm font-bold text-gray-700 w-36">
-                                    <span>{{ __('admin-role.index-table-action') }}</span>
-                                </th>
                             </tr>
                         </thead>
 
