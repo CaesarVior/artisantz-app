@@ -48,7 +48,7 @@
                              data-desc="Espresso dipadukan dengan susu segar dan caramel yang manis."
                              alt="Caramel Latte">
 
-                        <h3>Caramel Latte</h3>
+                        <h3>Cappuccino</h3>
 
                         <span>Rp 32.000</span>
 
@@ -77,7 +77,7 @@
                              data-desc="Minuman andalan Artisantz dengan perpaduan espresso dan cream."
                              alt="Signature Artisantz">
 
-                        <h3>Signature Artisantz</h3>
+                        <h3>Americano Lime Peach</h3>
 
                         <span>Rp 35.000</span>
 
@@ -106,7 +106,7 @@
                              data-desc="Matcha premium dipadukan susu segar dengan rasa yang creamy."
                              alt="Matcha Latte">
 
-                        <h3>Matcha Latte</h3>
+                        <h3>Brown Sugar</h3>
 
                         <span>Rp 30.000</span>
 
