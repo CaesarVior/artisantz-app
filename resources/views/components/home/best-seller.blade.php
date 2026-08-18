@@ -67,7 +67,7 @@
                     <div class="rank-card">
 
                         <span class="rank-label">
-                            OUR SIGNATURE
+                            BEST SELLER
                         </span>
 
                         <img src="{{ asset('img/kopi1.webp') }}"
@@ -96,7 +96,7 @@
                     <div class="rank-card">
 
                         <span class="rank-label">
-                            CUSTOMER FAVORITE
+                            BEST SELLER
                         </span>
 
                         <img src="{{ asset('img/kopi3.webp') }}"
