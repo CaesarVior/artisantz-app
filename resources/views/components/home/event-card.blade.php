@@ -1,34 +1,58 @@
 @props(['event' => null, 'bannerImg' => asset('img/event-banner.webp')])
 
 @if ($event)
-    <section class="event">
-        <div class="event-card-home">
-            <img src="{{ asset('img/event/parade-hujan-tour-album-punar/parade-hujan-banner.jpeg') }}"
-                alt="{{ $event->name }}">
+    @php
+        $eventName = data_get($event, 'name', 'New Event!');
+        $eventDate = data_get($event, 'event_date');
+        $rawPhoto  = data_get($event, 'photo');
 
-            <div class="event-overlay"></div>
+        $photos = is_string($rawPhoto) ? json_decode($rawPhoto, true) :$rawPhoto;
+        if (!is_array($photos)) {$photos = $rawPhoto ? [$rawPhoto] : [];
+        }
+    @endphp
 
-            <div class="event-content" style="z-index: 2; color: #fff;">
-                <span class="event-badge"
-                    style="background: #e74c3c; color: #fff; padding: 2px 10px; border-radius: 12px; font-size: 0.75rem; font-weight: bold; width: fit-content; margin-bottom: 6px;">
-                    UPCOMING EVENT
-                </span>
-
-                <h3 class="event-title"
-                    style="color: #ffffff; text-shadow: 0 2px 4px rgba(0,0,0,0.6); margin: 0; font-weight: 700;">
-                    {{ $event->name }}
-                </h3>
-
-                <p class="event-date"
-                    style="color: #f1f1f1; text-shadow: 0 1px 3px rgba(0,0,0,0.6); margin: 4px 0 14px; font-size: 0.9rem;">
-                    <i class="far fa-calendar-alt me-1"></i>
-                    {{ \Carbon\Carbon::parse($event->event_date)->translatedFormat('d F Y') }}
-                </p>
-
-                <a href="{{ route('events.index') }}" class="event-btn">
-                    View More
-                </a>
+    <section class="event-banner-section">
+        <div class="event-banner-card">
+            
+            {{-- Swiper Slider --}}
+            <div class="swiper eventGallerySwiper">
+                <div class="swiper-wrapper">
+                    @if (!empty($photos))
+                        @foreach (array_values($photos) as $index =>$img)
+                            <div class="swiper-slide">
+                                <div class="banner-img-container">
+                                    {{-- Ambient Background untuk mengisi ruang hitam --}}
+                                    <img src="{{ asset($img) }}" class="banner-ambient-bg" alt="" aria-hidden="true">
+                                    {{-- Poster Utama di Tengah --}}
+                                    <img src="{{ asset($img) }}" class="banner-poster" alt="{{ $eventName }} - Foto {{$index + 1 }}">
+                                </div>
+                            </div>
+                        @endforeach
+                    @else
+                        <div class="swiper-slide">
+                            <div class="banner-img-container">
+                                <img src="{{ $bannerImg }}" class="banner-ambient-bg" alt="" aria-hidden="true">
+                                <img src="{{ $bannerImg }}" class="banner-poster" alt="{{ $eventName }}">
+                            </div>
+                        </div>
+                    @endif
+                </div>
             </div>
+
+            {{-- Overlay Teks & Tombol --}}
+            <div class="banner-overlay">
+                <div class="banner-header">
+                    <span class="banner-badge">UPCOMING EVENT</span>
+                    <h3 class="banner-title">{{ $eventName }}</h3>
+                </div>
+
+                <div class="banner-action">
+                    <a href="{{ route('events.index') }}" class="view-more-btn">
+                        View More
+                    </a>
+                </div>
+            </div>
+
         </div>
     </section>
 @endif

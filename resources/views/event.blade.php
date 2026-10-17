@@ -28,8 +28,17 @@
                                     @foreach (array_values($photos) as $index => $img)
                                         <div class="swiper-slide">
                                             <div class="event-thumb">
-                                                <img src="{{ asset($img) }}"
-                                                    alt="{{ $event->name }} - Foto {{ $index + 1 }}">
+                                                <img src="{{ asset($img) }}" alt="{{ $event->name }} - Foto {{ $index + 1 }}">
+                                                
+                                                {{-- Tombol Icon Pembesar Gambar --}}
+                                                <button type="button" class="zoom-btn" onclick="openImageModal('{{ asset($img) }}')" title="Perbesar Gambar">
+                                                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                                                        <circle cx="11" cy="11" r="8"></circle>
+                                                        <line x1="21" y1="21" x2="16.65" y2="16.65"></line>
+                                                        <line x1="11" y1="8" x2="11" y2="14"></line>
+                                                        <line x1="8" y1="11" x2="14" y2="11"></line>
+                                                    </svg>
+                                                </button>
                                             </div>
                                         </div>
                                     @endforeach
@@ -112,9 +121,25 @@
             @endforelse
         </div>
     </section>
+    <div id="imageModal" class="image-modal" onclick="closeImageModal()">
+        <span class="close-modal">&times;</span>
+        <img class="modal-content-img" id="imgModalTarget" alt="Preview Event">
+    </div>
     <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
     <script>
+        function openImageModal(src) {
+            const modal = document.getElementById('imageModal');
+            const modalImg = document.getElementById('imgModalTarget');
+            modalImg.src = src;
+            modal.classList.add('active');
+        }
+
+        function closeImageModal() {
+            const modal = document.getElementById('imageModal');
+            modal.classList.remove('active');
+        }
+        
         document.addEventListener('DOMContentLoaded', function() {
             const swiper = new Swiper('.eventGallerySwiper', {
                 slidesPerView: 1,
