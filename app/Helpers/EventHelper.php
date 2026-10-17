@@ -84,13 +84,12 @@ class EventHelper
             }
         }
     }
-
+    
     public function getUpcomingActiveEvents()
     {
         $now = Carbon::now();
 
         return EventModel::where('event_date', '>=', $now)
-            ->where('event_date', '<=', $now->copy()->addDays(7))
             ->orderBy('event_date', 'asc')
             ->get();
     }
