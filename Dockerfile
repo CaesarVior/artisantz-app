@@ -17,7 +17,7 @@ RUN npm ci
 COPY . .
 RUN npm run build
 
-FROM webdevops/php-nginx:8.3-alpine
+FROM php:8.5.12-apache
 
 ENV WEB_DOCUMENT_ROOT=/app/public
 ENV APP_ENV=staging
